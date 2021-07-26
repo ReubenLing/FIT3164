@@ -1,223 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "_template.html" %}
+{% block mainactive1 %}class="active"{% endblock %}
+{% block mainactive2 %}class="active"{% endblock %}
+{% block styles %}
+<style>
+html {
+  scroll-behavior: smooth;
+}
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <title>FIT3163 Water Management</title>
+.parallax-container {
+  height: 800px;
+  display: flex;
+  /* defines flexbox */
+  flex-direction: column;
+  /* top to bottom */
+  justify-content: space-between;
+  /* first item at start, last at end */
+}
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{{url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link href="{{url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
+.parallax img {
+  background-size: cover
+}
 
-    .parallax-container {
-      height: 800px;
-      display: flex;
-      /* defines flexbox */
-      flex-direction: column;
-      /* top to bottom */
-      justify-content: space-between;
-      /* first item at start, last at end */
-    }
+h1 {
+  margin: 0;
+}
 
-    .parallax img {
-      background-size: cover
-    }
+.progress-container {
+  background-color: rgba(150, 150, 150, 0.6);
+  height: 0px;
+  width: 100%;
+}
 
-    h1 {
-      margin: 0;
-    }
+.progress-bar {
+  background-color: #2196f3;
+  height: 10px;
+  width: 0%;
+}
 
-    .progress-container {
-      background-color: rgba(150, 150, 150, 0.6);
-      height: 0px;
-      width: 100%;
-    }
+div.sticky {
+  position: -webkit-sticky;
+  /* Safari */
+  position: sticky;
+  top: 64px;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="progress-container sticky">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
 
-    .progress-bar {
-      background-color: #2196f3;
-      height: 10px;
-      width: 0%;
-    }
-
-    div.sticky {
-      position: -webkit-sticky;
-      /* Safari */
-      position: sticky;
-      top: 64px;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="navbar-fixed">
-    <nav class="grey darken-3" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" onclick='window.scrollTo({top: 0, behavior: "smooth"});'
-          class="brand-logo hide-on-med-and-down">Water
-          Management in Dairy
-          Farms</a>
-        <ul class="right hide-on-med-and-down">
-          <li class="active"><a href="#">Infographics</a></li>
-          <li><a href="/models">Models</a></li>
-          <li><a href="/methodology">Methodology</a></li>
-        </ul>
-
-        <ul id="nav-mobile" class="sidenav">
-          <li class="active"><a href="#">Infographics</a></li>
-          <li><a href="/models">Models</a></li>
-          <li><a href="/methodology">Methodology</a></li>
-        </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+<div class="parallax-container">
+  <div class="parallax"><img src="static/images/cows.jpg"></div>
+  <h1></h1>
+  <h1 class="white-text" style="margin-left:100px;margin-top:600px">Water Management in Dairy Farms</h1>
+  <p class="center-align">
+    <a class="btn-floating btn-large waves-effect waves-light blue pulse" href="#intro"><i
+        class="material-icons">south</i></a>
+  </p>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m9 l10">
+      <div id="intro" class="section scrollspy">
+        <p class="flow-text">Despite being the industry that consumes the most water in Australia, there exists a lack
+          of
+          awareness and urgency in improving methods of obtaining, storing and using water within the dairy industry.
+          As
+          about a third of irrigated land in the country is occupied by dairy farms, it is imperative that awareness
+          and
+          incentives for more efficient and sustainable measures are brought to light.<br><br>Our key goal is to use
+          data
+          visualisation to inform businesses in the dairy industry on practices to apply within
+          their organisation in order to reduce their water consumption. This will hold benefits to the environment
+          and
+          society as it could reduce the natural resources needed to run Australia’s largest agricultural sector.
+        </p>
       </div>
-    </nav>
-  </div>
-  <div class="progress-container sticky">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
 
-  <div class="parallax-container">
-    <div class="parallax"><img src="static/images/cows.jpg"></div>
-    <h1></h1>
-    <h1 class="white-text" style="margin-left:100px;margin-top:600px">Water Management in Dairy Farms</h1>
-    <p class="center-align">
-      <a class="btn-floating btn-large waves-effect waves-light blue pulse" href="#intro"><i
-          class="material-icons">south</i></a>
-    </p>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col s12 m9 l10">
-        <div id="intro" class="section scrollspy">
-          <p class="flow-text">Despite being the industry that consumes the most water in Australia, there exists a lack
-            of
-            awareness and urgency in improving methods of obtaining, storing and using water within the dairy industry.
-            As
-            about a third of irrigated land in the country is occupied by dairy farms, it is imperative that awareness
-            and
-            incentives for more efficient and sustainable measures are brought to light.<br><br>Our key goal is to use
-            data
-            visualisation to inform businesses in the dairy industry on practices to apply within
-            their organisation in order to reduce their water consumption. This will hold benefits to the environment
-            and
-            society as it could reduce the natural resources needed to run Australia’s largest agricultural sector.
-          </p>
-        </div>
+      <div id="usage" class="section scrollspy">
+        <h3 class="blue-text text-accent-2">Water Usage Statistics</h3>
+        <p>Farms fsdlfkjsdlfkasg asfjhwlkjfh aerughaer uhgfuifhalwi urhauwihf waiuh water asldkfjhlkwah weufh werilfgh
+          leriuhgvl uawerhsf uwhrg oiuehf iuhreviuh eriuhv eriughwequfh eruihv wreiuhv rwiuahgiuh welu tfhlwreiuhg
+          ireugh iuerhgviuorhvui oherviu hwrvcuih wqefuihqw fgvuihergluk hwrqiglfuh iouh wqriolfhio uehviuwerhf
+          iurwhfg qiwuaecuiar gfhvlierufgh rwiuhg erguiv hetiugh eriuvh weuifhqowifh qwoeifuheoasriugh
+          eoiluhvbaiwuoehiou rghviuerh uiwrh goiwruhg ioeruh</p>
+        <p class="center-align">
+          <img src="static/images/infographic1.jpg">
+        </p>
+      </div>
 
-        <div id="usage" class="section scrollspy">
-          <h3 class="blue-text text-accent-2">Water Usage Statistics</h3>
-          <p>Farms fsdlfkjsdlfkasg asfjhwlkjfh aerughaer uhgfuifhalwi urhauwihf waiuh water asldkfjhlkwah weufh werilfgh
-            leriuhgvl uawerhsf uwhrg oiuehf iuhreviuh eriuhv eriughwequfh eruihv wreiuhv rwiuahgiuh welu tfhlwreiuhg
-            ireugh iuerhgviuorhvui oherviu hwrvcuih wqefuihqw fgvuihergluk hwrqiglfuh iouh wqriolfhio uehviuwerhf
-            iurwhfg qiwuaecuiar gfhvlierufgh rwiuhg erguiv hetiugh eriuvh weuifhqowifh qwoeifuheoasriugh
-            eoiluhvbaiwuoehiou rghviuerh uiwrh goiwruhg ioeruh</p>
-          <p class="center-align">
-            <img src="static/images/infographic1.jpg">
-          </p>
-        </div>
-
-        <div id="infographic" class="section scrollspy">
-          <h3 class="blue-text text-accent-2">Example Structure</h3>
-          <h5 class="blue-text text-accent-1">Example 1</h5>
-          <div class="row">
-            <div class="col s8">
-              <p>ioe fjwij weoifj weoifjweo ifjweoifj weoifjweo ifjwieo fjoweifj aowiefj awlijfawl;ijk aw;oeij awoerifgj
-                eorighj poeisrg poawijfp owijarfo iajwgio harwego ijwrgoi jawergi jersgoi hjesroguih ergukhj eralkgj
-                aerklij eroigj eroigjero igjerog ijergoij ersog;ij erogij erogij eropgij erpgoij eropgijer goipjergpo
-                iejasguioh ergiu awhrfgkljh lgkajshr qwaiougpseuigwaeiotufg poeirtsg opiwrgj psotiugj wop9aiugoi
-                esurgopi rjev oerijv wrifgj rijv wrivj eriogj weraiogj wropig jwerogi jerg ioerjg eroigjawefoiwa egi
-              </p>
-            </div>
-            <div class="col s4" style="overflow:hidden">
-              <img src="static/images/infographic1.jpg" style='object-fit:fill'>
-            </div>
+      <div id="infographic" class="section scrollspy">
+        <h3 class="blue-text text-accent-2">Example Structure</h3>
+        <h5 class="blue-text text-accent-1">Example 1</h5>
+        <div class="row">
+          <div class="col s8">
+            <p>ioe fjwij weoifj weoifjweo ifjweoifj weoifjweo ifjwieo fjoweifj aowiefj awlijfawl;ijk aw;oeij awoerifgj
+              eorighj poeisrg poawijfp owijarfo iajwgio harwego ijwrgoi jawergi jersgoi hjesroguih ergukhj eralkgj
+              aerklij eroigj eroigjero igjerog ijergoij ersog;ij erogij erogij eropgij erpgoij eropgijer goipjergpo
+              iejasguioh ergiu awhrfgkljh lgkajshr qwaiougpseuigwaeiotufg poeirtsg opiwrgj psotiugj wop9aiugoi
+              esurgopi rjev oerijv wrifgj rijv wrivj eriogj weraiogj wropig jwerogi jerg ioerjg eroigjawefoiwa egi
+            </p>
           </div>
-          <h5 class="blue-text text-accent-1">Example 1</h5>
-          <div class="row">
-            <div class="col s4" style="overflow:hidden">
-              <img src="static/images/infographic1.jpg" style='object-fit:fill'>
-            </div>
-            <div class="col s8">
-              <p>ioe fjwij weoifj weoifjweo ifjweoifj weoifjweo ifjwieo fjoweifj aowiefj awlijfawl;ijk aw;oeij awoerifgj
-                eorighj poeisrg poawijfp owijarfo iajwgio harwego ijwrgoi jawergi jersgoi hjesroguih ergukhj eralkgj
-                aerklij eroigj eroigjero igjerog ijergoij ersog;ij erogij erogij eropgij erpgoij eropgijer goipjergpo
-                iejasguioh ergiu awhrfgkljh lgkajshr qwaiougpseuigwaeiotufg poeirtsg opiwrgj psotiugj wop9aiugoi
-                esurgopi rjev oerijv wrifgj rijv wrivj eriogj weraiogj wropig jwerogi jerg ioerjg eroigjawefoiwa egi
-              </p>
-            </div>
+          <div class="col s4" style="overflow:hidden">
+            <img src="static/images/infographic1.jpg" style='object-fit:fill'>
           </div>
-          <h6>References</h6>
-          <ul class="browser-default">
-            <li>Seametrics. (n.d.). Infographic: Interesting Facts About Farm Water Conservation [Image]. Retrieved from
-              <a
-                href="https://www.seametrics.com/blog/farm-water-infographic/">https://www.seametrics.com/blog/farm-water-infographic/</a>
-            </li>
-            <li>Yellowstone National Park. (2014). Cow bison and calf [Photograph]. Retrieved from <a
-                href="https://www.flickr.com/photos/80223459@N05/14952467567">https://www.flickr.com/photos/80223459@N05/14952467567</a>
-            </li>
-          </ul>
         </div>
-      </div>
-      <div class="col hide-on-small-only m3 l2 sticky">
-        <ul class="section table-of-contents">
-          <li><a href="#intro">Introduction</a></li>
-          <li><a href="#usage">Water Usage</a></li>
-          <li><a href="#infographic">Structure Example</a></li>
+        <h5 class="blue-text text-accent-1">Example 1</h5>
+        <div class="row">
+          <div class="col s4" style="overflow:hidden">
+            <img src="static/images/infographic1.jpg" style='object-fit:fill'>
+          </div>
+          <div class="col s8">
+            <p>ioe fjwij weoifj weoifjweo ifjweoifj weoifjweo ifjwieo fjoweifj aowiefj awlijfawl;ijk aw;oeij awoerifgj
+              eorighj poeisrg poawijfp owijarfo iajwgio harwego ijwrgoi jawergi jersgoi hjesroguih ergukhj eralkgj
+              aerklij eroigj eroigjero igjerog ijergoij ersog;ij erogij erogij eropgij erpgoij eropgijer goipjergpo
+              iejasguioh ergiu awhrfgkljh lgkajshr qwaiougpseuigwaeiotufg poeirtsg opiwrgj psotiugj wop9aiugoi
+              esurgopi rjev oerijv wrifgj rijv wrivj eriogj weraiogj wropig jwerogi jerg ioerjg eroigjawefoiwa egi
+            </p>
+          </div>
+        </div>
+        <h6>References</h6>
+        <ul class="browser-default">
+          <li>Seametrics. (n.d.). Infographic: Interesting Facts About Farm Water Conservation [Image]. Retrieved from
+            <a
+              href="https://www.seametrics.com/blog/farm-water-infographic/">https://www.seametrics.com/blog/farm-water-infographic/</a>
+          </li>
+          <li>Yellowstone National Park. (2014). Cow bison and calf [Photograph]. Retrieved from <a
+              href="https://www.flickr.com/photos/80223459@N05/14952467567">https://www.flickr.com/photos/80223459@N05/14952467567</a>
+          </li>
         </ul>
       </div>
     </div>
-
+    <div class="col hide-on-small-only m3 l2 sticky">
+      <ul class="section table-of-contents">
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#usage">Water Usage</a></li>
+        <li><a href="#infographic">Structure Example</a></li>
+      </ul>
+    </div>
   </div>
 
-  <footer class="page-footer grey">
-    <div class="container">
-      <div class="row">
-        <div class="col l9 s12">
-          <h5 class="white-text">About Us</h5>
-          <p class="grey-text text-lighten-4">Website made as final deliverable for FIT3163 - Data science project at
-            Monash University.<br><br>Group 21 Members: Reuben Ling, Benita Sien, Shyam Srinivas<br><br>Last Edited 20th
-            May 2021</p>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Links</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+function progressBarScroll() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop,
+    height = document.documentElement.scrollHeight - document.documentElement.clientHeight,
+    scrolled = (winScroll / height) * 100;
+  document.getElementById("progressBar").style.width = scrolled + "%";
+}
 
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="{{url_for('static', filename='js/materialize.js') }}"></script>
-  <script src="{{url_for('static', filename='js/init.js') }}"></script>
-  <script>M.AutoInit();</script>
-  <script>
-    function progressBarScroll() {
-      let winScroll = document.body.scrollTop || document.documentElement.scrollTop,
-        height = document.documentElement.scrollHeight - document.documentElement.clientHeight,
-        scrolled = (winScroll / height) * 100;
-      document.getElementById("progressBar").style.width = scrolled + "%";
-    }
-
-    window.onscroll = function () {
-      progressBarScroll();
-    };
-  </script>
-</body>
-
-</html>
+window.onscroll = function () {
+  progressBarScroll();
+};
+</script>
+{% endblock %}
