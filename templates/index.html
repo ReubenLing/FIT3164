@@ -8,8 +8,8 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="{{url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="{{url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection" />
   <style>
     html {
       scroll-behavior: smooth;
@@ -63,14 +63,14 @@
           Farms</a>
         <ul class="right hide-on-med-and-down">
           <li class="active"><a href="#">Infographics</a></li>
-          <li><a href="./models.html">Models</a></li>
-          <li><a href="./methodology.html">Methodology</a></li>
+          <li><a href="/models">Models</a></li>
+          <li><a href="/methodology">Methodology</a></li>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
           <li class="active"><a href="#">Infographics</a></li>
-          <li><a href="./models.html">Models</a></li>
-          <li><a href="./methodology.html">Methodology</a></li>
+          <li><a href="/models">Models</a></li>
+          <li><a href="/methodology">Methodology</a></li>
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
@@ -81,7 +81,7 @@
   </div>
 
   <div class="parallax-container">
-    <div class="parallax"><img src="./cows.jpg"></div>
+    <div class="parallax"><img src="static/images/cows.jpg"></div>
     <h1></h1>
     <h1 class="white-text" style="margin-left:100px;margin-top:600px">Water Management in Dairy Farms</h1>
     <p class="center-align">
@@ -116,7 +116,7 @@
             iurwhfg qiwuaecuiar gfhvlierufgh rwiuhg erguiv hetiugh eriuvh weuifhqowifh qwoeifuheoasriugh
             eoiluhvbaiwuoehiou rghviuerh uiwrh goiwruhg ioeruh</p>
           <p class="center-align">
-            <img src="./infographic1.jpg">
+            <img src="static/images/infographic1.jpg">
           </p>
         </div>
 
@@ -133,13 +133,13 @@
               </p>
             </div>
             <div class="col s4" style="overflow:hidden">
-              <img src="./infographic1.jpg" style='object-fit:fill'>
+              <img src="static/images/infographic1.jpg" style='object-fit:fill'>
             </div>
           </div>
           <h5 class="blue-text text-accent-1">Example 1</h5>
           <div class="row">
             <div class="col s4" style="overflow:hidden">
-              <img src="./infographic1.jpg" style='object-fit:fill'>
+              <img src="static/images/infographic1.jpg" style='object-fit:fill'>
             </div>
             <div class="col s8">
               <p>ioe fjwij weoifj weoifjweo ifjweoifj weoifjweo ifjwieo fjoweifj aowiefj awlijfawl;ijk aw;oeij awoerifgj
@@ -203,8 +203,8 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="{{url_for('static', filename='js/materialize.js') }}"></script>
+  <script src="{{url_for('static', filename='js/init.js') }}"></script>
   <script>M.AutoInit();</script>
   <script>
     function progressBarScroll() {
