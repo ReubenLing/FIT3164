@@ -3,6 +3,7 @@
 {% block modelsactive2 %}class="active"{% endblock %}
 {% block content %}
 <div class="container">
+	<!-- Sample form - not functional -->
 	<p class='flow-text'>Enter details about your farm to grade your water consumption, and get a recommendation for
 		an irrigation system.</p>
 	<form action="#">
@@ -41,6 +42,8 @@
 		</button>
 	</form>
 	<br><br>
+
+	<!-- Prototype form - for initial testing -->
 	<h3>Prototype Form</h3>
 	<p>Enter the number of cows in your farm below, and we will predict your water consumption.</p>
 	<form action="{{ url_for('test_output') }}" method="post">
@@ -56,11 +59,31 @@
 			<input type="submit" value="Submit">
 		</div>
 	</form>
+
+	<!-- Model output area -->
 	{% if response is defined %}
 	<div class="row">
-		<h3>Model Prediction: {{ response.water_consumption }}</h3>
+		<table class="centered highlight">
+			<thead>
+				<tr>
+					<th>Range Input</th>
+					<th>Range Output</th>
+					<th>Text Input</th>
+					<th>Text Output</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ response.num_cows_range }}</td>
+					<td>{{ response.water_consumption_range }}</td>
+					<td>{{ response.num_cows_text }}</td>
+					<td>{{ response.water_consumption_text }}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	{% else %}
+	<!-- Sample form output - not functional -->
 	<div class="row">
 		<div class="col s6 center">
 			<span class="center" style="border:1px solid black;height:500px;width:500px;display:inline-block;">[Model
