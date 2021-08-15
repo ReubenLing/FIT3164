@@ -44,8 +44,17 @@
   <h3>Prototype Form</h3>
   <p>Enter the number of cows in your farm below, and we will predict your water consumption.</p>
   <form action="{{ url_for('test_output') }}" method="post">
-    <input type="text" name="test_input"><br>
-    <input type="submit" value="Submit">
+    <div class="row">
+      <p class="range-field col s12 m6">
+        Number of Cows
+        <input type="range" name="test_range" min="0" max="100" />
+      </p>
+      <div class="input-field col s12 m6">
+        <input type="text" name="test_input" id="cows">
+        <label for="cows">Number of Cows</label>
+      </div>
+      <input type="submit" value="Submit">
+    </div>
   </form>
   {% if response is defined %}
   <div class="row">
