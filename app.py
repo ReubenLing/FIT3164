@@ -21,7 +21,7 @@ def test_output():
     try:
         num_cows = int(request.form['test_input'])
     except ValueError: # ideally validate in frontend, this method for testing only
-        return render_template('models.html', response="Bad input, must be integer")
+        return "Bad input, must be integer"
 
     # A model
     water_consumption = num_cows * 44.5
@@ -34,3 +34,4 @@ def test_output():
 
     # Serve modelled value to html template
     return render_template('models.html', response=response)
+
