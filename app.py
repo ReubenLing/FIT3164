@@ -2,10 +2,15 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-
 # FUNCTIONS GO HERE
 def water_model(cows):
     """Predict water usage."""
+
+    # Validation - ideally validate in frontend, this method for testing only
+    try:
+        cows = int(cows)
+    except ValueError:
+        return "Bad input, must be integer"
 
     # Model
     water_consumption = cows * 44.5
@@ -31,13 +36,12 @@ def methodology():
 
 @ app.route('/test_output', methods=['POST'])
 def test_output():
+    """Handles test form submissions from "models" page."""
 
     # Get data from form
-    try:
-        num_cows_text = int(request.form['test_input'])
-        num_cows_range = int(request.form['test_range'])
-    except ValueError: # ideally validate in frontend, this method for testing only
-        return "Bad input, must be integer"
+    num_cows_text = request.form['test_input']
+    num_cows_range = request.form['test_range']
+
 
     # A simple model
     water_consumption_text = water_model(num_cows_text)
