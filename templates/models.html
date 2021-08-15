@@ -41,14 +41,15 @@
     </button>
   </form>
   <br><br>
-  <h3>Test Form</h3>
+  <h3>Prototype Form</h3>
+  <p>Enter the number of cows in your farm below, and we will predict your water consumption.</p>
   <form action="{{ url_for('test_output') }}" method="post">
-    <input type="text" name="testInput"><br>
+    <input type="text" name="test_input"><br>
     <input type="submit" value="Submit">
   </form>
   {% if response is defined %}
   <div class="row">
-    <h3>Model Prediction: {{ response.testResponse }}</h3>
+    <h3>Model Prediction: {{ response.water_consumption }}</h3>
   </div>
   {% else %}
   <div class="row">
