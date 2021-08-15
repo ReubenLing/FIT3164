@@ -2,6 +2,21 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+
+# FUNCTIONS GO HERE
+def water_model(cows):
+    """Predict water usage."""
+
+    # Model
+    water_consumption = cows * 44.5
+
+    # Formatting
+    if water_consumption % 1 == 0:
+        water_consumption = int(water_consumption)
+    
+    return water_consumption
+
+# ROUTES GO HERE
 @ app.route('/')
 def homepage():
     return render_template('index.html')
@@ -19,19 +34,22 @@ def test_output():
 
     # Get data from form
     try:
-        num_cows = int(request.form['test_input'])
+        num_cows_text = int(request.form['test_input'])
+        num_cows_range = int(request.form['test_range'])
     except ValueError: # ideally validate in frontend, this method for testing only
         return "Bad input, must be integer"
 
-    # A model
-    water_consumption = num_cows * 44.5
+    # A simple model
+    water_consumption_text = water_model(num_cows_text)
+    water_consumption_range = water_model(num_cows_range)
 
-    # Build response dict
+    # Build response dictionary
     response = {
-        "num_cows": num_cows,
-        "water_consumption": water_consumption
+        "num_cows_text": num_cows_text,
+        "num_cows_range": num_cows_range,
+        "water_consumption_text": water_consumption_text,
+        "water_consumption_range": water_consumption_range,
     }
 
     # Serve modelled value to html template
     return render_template('models.html', response=response)
-
