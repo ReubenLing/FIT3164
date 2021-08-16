@@ -1,0 +1,51 @@
+﻿Method,Capital Cost*,Pumping Cost,Labour requirements,Application efficiency,Application uniformity,Potential water losses,Comments
+Surface irrigation- furrow,"Modest to high, depending on land levelling requirements","Low
+(generally a gravity fed system)",Moderate to high (depending on level of automation),"Low to high, depending on layout/soil properties/ irrigation management","Low to high, depending on layout/soil properties/ irrigation management","- Evaporation
+- Surface runoff
+- Seepage","Performance highly variable 7 depending on site setup and strongly influenced by irrigation management. Can have problems with erosion. Irrigation performance may be improved by using surge flow rather than constant flow irrigation. Double row cropping may also reduce overall water use
+
+Not suited for grazing"
+Surface irrigation- border-check,"Modest to high, depending on land levelling requirements","Low.
+(generally a gravity fed system)",Moderate to high (depending on level of automation),"Low to high, depending on layout/soil properties/ irrigation management","Low to high, depending on layout/soil properties/ irrigation management","- Channel losses
+- Evaporation
+- Surface runoff
+- Seepage","Performance highly variable depending on site setup and strongly influenced by irrigation management.
+
+Suited to areas of even slope.
+- For shallow rooted crops such as pasture, generally suitable for medium to heavy soils.
+- Normally not suitable for shallow rooted crops on light soils.
+- Suitable for lucerne on light to heavy soils.
+- This system is not suitable for very light soils.
+Very suitable for grazing."
+Fixed or portable solid set sprinklers,Relatively high,Relatively low to low – operate at medium pressures,Substantial at setup & retrieval; minimal once set up.,High.,Good if properly designed with appropriate spacings,"- Evaporation.
+- Some wind dispersion
+- Possible surface runoff depending on management","Suited to high value intensive vegetable, herb & ornamental crops, fixed systems for perennials.
+Not generally suited for grazing"
+"Travelling gun or boom irrigators, with soft or hard hose.",Modest - higher for hard-hose systems,"High.
+High pressure required. Higher for hard hose (increased friction losses). Boom systems use lower pressure",Modest – lower for hard hose types. Reasonable sized tractor required to move large hard hose machines,Low to moderate (higher for boom systems),"Low.
+Uneven at start and end of run. Better uniformity with boom.
+Uniformity depends on overlap of runs","- Wind dispersion
+- May have excess runoff/seepage at ends where over-watered",Very flexible and portable system. Efficiency influenced by degree of overlap between irrigations. Most suited to annual crops (including pastures) with low water requirements
+"Long lateral sprinklers
+(eg Van den Bosch, K-line)",Relatively low,"Modest.
+Significant friction losses in lateral hoses.",High and regular,"Low
+(relies on accuracy in overlap of runs)",Very low - uniformity depends on overlap of runs,"- Wind dispersion
+- Evaporation
+- Minimal surface runoff or seepage",Low capital cost but high labour requirements. Suited to pasture only. Suits areas with irregular shape or undulating topography
+Centre Pivot,Modest to high,"Low to moderate, depending on design pressure","Low
+Can be moderate if towable options used",High to very high,"High to very high.
+May require end gun for maximum coverage in square paddocks. Uniformity under end gun low.","Evaporative losses
+Some runoff at end of line on large systems (depending on design)",Robust on rolling terrain. If properly designed allows consistent efficient irrigation with minimal labour. Best suited to large areas of crops with high water requirements and/or of high value
+Linear or lateral move,Modest to high,"Low to moderate, higher than centre pivot if supplied by hose, due to friction losses;
+
+lower if supplied by channel",Low to modest,High to very high,"High to very high.
+Only suited to rectangular areas",Evaporative losses. Some runoff if application rate > infiltration capacity of soil,If properly designed allows consistent efficient irrigation with minimal labour. Best suited to large areas of crops with high water requirements and/or of high value. Less appropriate on undulating or irregular terrain
+Micro irrigation – microsprays or minisprinklers,High to very high,"Low
+(operate at low pressure)","Low
+(seasonal maintenance)",Very high,High,Low evaporative losses. Possible surface runoff depending on management,"Suited to vine and tree crops. Accurate control of irrigation possible, best utilised with sophisticated scheduling methods. Requires filtration system and relatively clean water"
+Micro irrigation - drip,High to very high,"Low
+(operate at low pressure)","Low
+(seasonal maintenance)",Very high,High,Low evaporative losses. Possible surface runoff depending on management,"Wetting pattern will be influenced by soil texture and discharge rate. Suited to vine, tree crops and other forms of horticulture. Accurate control of irrigation possible, best utilised with sophisticated scheduling methods. Requires filtration system and relatively clean water"
+Micro irrigation – subsurface drip,High to very high,"Low
+(operate at low pressure)","Low
+(seasonal maintenance)",Very high,High,"Reduced evaporative losses, minimal runoff or seepage",Suitable for horticulture and pasture irrigation (if properly designed). Flexible (fits into most layouts). Water applied within rootzone minimising losses. Will require filtration system and relatively clean water. May need additional irrigation system for crop germination
