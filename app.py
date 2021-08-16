@@ -22,6 +22,9 @@ def water_model(cows):
     
     return water_consumption
 
+# def irrigation_model():
+
+
 # ROUTES GO HERE
 @ app.route('/')
 def homepage():
@@ -58,3 +61,11 @@ def test_output():
 
     # Serve modelled value to html template
     return render_template('models.html', response=response)
+
+@ app.route('/irrigation_proto', methods=['POST'])
+def irrigation_proto():
+    """Prototype irrigation model handler"""
+
+    # Get data from form
+    print(request.form)
+    return render_template('models.html')
