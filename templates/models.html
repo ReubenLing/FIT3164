@@ -4,41 +4,73 @@
 {% block content %}
 <div class="container">
 	<!-- Sample form - not functional -->
-	<h3>Sample Form</h3>
-	<p class='flow-text'>Enter details about your farm to grade your water consumption, and get a recommendation for
-		an irrigation system.</p>
-	<form action="#">
+	<h3>Irrigation Recommendations</h3>
+	<p class='flow-text'>Looking for a new irrigation system? Enter your details below and find the most suitable irrigation system for your needs, from data provided by the Agriculture Victoria's Resources Online.</p>
+	<p class='red-text'>Values are placeholders for now</p>
+	<form action="{{ url_for('irrigation_proto') }}" method="post">
 		<div class="row">
 			<div class="input-field col s12 m6">
-				<select>
+				<select name="capital_cost">
 					<option value="" disabled selected>Choose your option</option>
-					<option value="1">Victoria</option>
-					<option value="2">New South Wales</option>
-					<option value="3">Queensland</option>
+					<option value="1">High</option>
+					<option value="2">Medium</option>
+					<option value="3">Low</option>
 				</select>
-				<label>State</label>
+				<label>How much capital cost are you willing to incur?</label>
 			</div>
 			<div class="input-field col s12 m6">
-				<select>
+				<select name="pumping_cost">
 					<option value="" disabled selected>Choose your option</option>
-					<option value="1">Dairy Only</option>
-					<option value="2">Option 2</option>
-					<option value="3">Option 3</option>
+					<option value="1">High</option>
+					<option value="2">Medium</option>
+					<option value="3">Low</option>
 				</select>
-				<label>Irrigation System</label>
+				<label>How much pumping cost are you willing to incur?</label>
 			</div>
 		</div>
 		<div class="row">
-			<p class="range-field col s12 m6">
-				Farm Size (km<sup>2</sup>)
-				<input type="range" id="test5" min="0" max="100" />
-			</p>
-			<p class="range-field col s12 m6">
-				Average Monthly Water Consumption (kL)
-				<input type="range" id="test5" min="0" max="100" />
-			</p>
+			<div class="input-field col s12 m6">
+				<select name="labour_requirements">
+					<option value="" disabled selected>Choose your option</option>
+					<option value="1">High</option>
+					<option value="2">Medium</option>
+					<option value="3">Low</option>
+				</select>
+				<label>What level of labour requirements do you want the system to require?</label>
+			</div>
+			<div class="input-field col s12 m6">
+				<select name="efficiency">
+					<option value="" disabled selected>Choose your option</option>
+					<option value="1">High</option>
+					<option value="2">Medium</option>
+					<option value="3">Low</option>
+				</select>
+				<label>What level of efficiency do you want from the system?</label>
+			</div>
 		</div>
-		<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+		<div class="row">
+			<div class="input-field col s12 m6">
+				<select name="uniformity">
+					<option value="" disabled selected>Choose your option</option>
+					<option value="1">High</option>
+					<option value="2">Medium</option>
+					<option value="3">Low</option>
+				</select>
+				<label>How uniform do you want the irrigation to be?</label>
+			</div>
+			<div class="input-field col s12 m6">
+				<select multiple name="water_loss">
+					<option value="" disabled selected>Choose your option</option>
+					<option value="1">Channel Losses</option>
+					<option value="2">Evaporation</option>
+					<option value="3">Seepage</option>
+					<option value="4">Surface Runoff</option>
+					<option value="5">Wind Dispersion</option>
+				</select>
+				<label>What sources of water loss are you most concerned about?</label>
+			</div>
+		</div>
+		<button class="btn waves-effect waves-light right" type="submit" name="action">Submit
 			<i class="material-icons right">send</i>
 		</button>
 	</form>
