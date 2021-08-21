@@ -1,0 +1,12 @@
+﻿Method,CC Low,CC Modest,CC High,CC Very High,PC Low,PC Modest,PC Moderate,PC High,LR Low,LR Modest,LR Moderate,LR High,AE Low,AE Moderate,AE High,AE Very High,AU Very Low,AU Low,AU High,AU Very High,PWL Evaporation,PWL Evaporation Low,PWL Runoff,PWL Runoff Possible,PWL Seepage,PWL Channel Loss,PWL Wind Dispersion,
+Surface irrigation- furrow,0,1,1,0,1,0,0,0,0,0,1,1,1,1,1,0,0,1,1,0,1,0,1,0,1,0,0,0
+Surface irrigation- border-check,0,1,1,0,1,0,0,0,0,0,1,1,1,1,1,0,0,1,1,0,1,0,1,0,1,1,0,0
+Fixed or portable solid set sprinklers,0,0,1,0,1,0,0,0,1,0,0,1,0,0,1,0,0,1,1,0,1,0,0,1,0,0,1,0
+"Travelling gun or boom irrigators, with soft or hard hose.",0,1,1,0,0,0,0,1,0,1,0,0,1,1,0,0,0,1,0,0,0,0,0,1,1,0,0,1
+"Long lateral sprinklers
+(eg Van den Bosch, K-line)",1,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0
+Centre Pivot,0,1,1,0,1,1,1,0,1,1,1,0,0,0,1,1,0,0,1,1,1,0,0,1,0,0,0,0
+Linear or lateral move,0,1,1,0,1,1,1,0,1,1,0,0,0,0,1,1,0,0,1,1,1,0,0,1,0,0,0,0
+Micro irrigation – microsprays or minisprinklers,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0,0,0
+Micro irrigation - drip,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0,0,0
+Micro irrigation – subsurface drip,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0,0,0
