@@ -5,7 +5,8 @@
 <div class="container">
 	<!-- Sample form - not functional -->
 	<h3>Irrigation Recommendations</h3>
-	<p class='flow-text'>Looking for a new irrigation system? Enter your details below and find the most suitable irrigation system for your needs, from data provided by the Agriculture Victoria's Resources Online.</p>
+	<p class='flow-text'>Looking for a new irrigation system? Enter your details below and find the most suitable
+		irrigation system for your needs, from data provided by the Agriculture Victoria's Resources Online.</p>
 	<p class='red-text'>Values are placeholders for now</p>
 	<form action="{{ url_for('irrigation_proto') }}" method="post">
 		<div class="row">
@@ -84,6 +85,43 @@
 	</form>
 	<br><br>
 
+	<!-- Model output area -->
+	{% if response is defined %}
+	{% if response.irrigation_system is defined %}
+	{% for system in response.irrigation_system %}
+	<div class="card">
+		<div class="card-content">
+			<span class="card-title">{{ system.nice_name }}</span>
+			<p>{{ system.description|safe }}</p>
+			<p><a href="{{ system.description_src }}">(source)</a></p>
+		</div>
+		<div class="card-tabs">
+			<ul class="tabs tabs-fixed-width">
+				<li class="tab"><a class="active" href="#comments{{ loop.index }}">Considerations</a></li>
+				<li class="tab"><a href="#reading{{ loop.index }}">Further Reading</a></li>
+			</ul>
+		</div>
+		<div class="card-content grey lighten-4">
+			<div id="comments{{ loop.index }}">
+				<ul class="browser-default">
+					{% for comment in system.comments %}
+					<li>{{ comment }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div id="reading{{ loop.index }}">
+				<ul class="browser-default">
+					{% for pair in system.links %}
+					<li><a href="{{ pair[1] }}">{{ pair[0] }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	{% endif %}
+	{% endif %}
+
 	<!-- Prototype form - for initial testing -->
 	<h3>Prototype Form</h3>
 	<p class="flow-text">Enter the number of cows in your farm below, and we will predict your water consumption.</p>
@@ -105,6 +143,7 @@
 
 	<!-- Model output area -->
 	{% if response is defined %}
+	{% if response.num_cows_text is defined %}
 	<div class="row">
 		<table class="centered highlight">
 			<thead>
@@ -141,6 +180,7 @@
 				here]</span>
 		</div>
 	</div> -->
+	{% endif %}
 	{% endif %}
 	<br><br>
 </div>
