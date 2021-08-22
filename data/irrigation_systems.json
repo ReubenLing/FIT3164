@@ -1,0 +1,224 @@
+{
+    "Surface irrigation- furrow": {
+        "nice_name": "Surface Furrow Irrigation",
+        "description": "Furrow irrigation is conducted by creating small parallel channels along the field length in the direction of predominant slope. Water is applied to the top end of each furrow and flows down the field under the influence of gravity. Water may be supplied using gated pipe, siphon and head ditch, or bankless systems. The speed of water movement is determined by many factors such as slope, surface roughness and furrow shape but most importantly by the inflow rate and soil infiltration rate.",
+        "description_src": "https://en.wikipedia.org/wiki/Surface_irrigation#Furrow_irrigation",
+        "comments": [
+            "Performance highly variable 7 depending on site setup and strongly influenced by irrigation management.",
+            "Can have problems with erosion.",
+            "Irrigation performance may be improved by using surge flow rather than constant flow irrigation.",
+            "Double row cropping may also reduce overall water use.",
+            "Not suited for grazing"
+        ],
+        "links": [
+            [
+                "Furrow irrigation on Wikipedia",
+                "https://en.wikipedia.org/wiki/Surface_irrigation#Furrow_irrigation"
+            ],
+            [
+                "A review of Basin (Contour) Irrigation Systems I",
+                "https://web.archive.org/web/20160304073043/http://irrigationfutures.org.au/imagesDB/news/CRCIF-IM0108-Report1-web.pdf"
+            ]
+        ]
+    },
+    "Surface irrigation- border-check": {
+        "nice_name": "Border-Check Irrigation",
+        "description": "Border Check or ‘flood’ irrigation is the most common irrigation system in northern Victoria. This type of irrigation distributes water via open irrigation channels to irrigation ‘bays’ which are defined by small earthen ‘check banks’. Border check irrigation can be efficient on suitable soils, with appropriate layout and good management. Efficient irrigation is applying the water required by the pasture/crop for optimal growth with a minimum of water lost through deep drainage beyond the roots or excess surface runoff.",
+        "description_src": "https://extensionaus.com.au/irrigatingag/docs/irrigation-in-northern-victoria/broadacre-irrigation-systems-in-northern-victoria/border-check-flood-irrigation-system/",
+        "comments": [
+            "Performance highly variable depending on site setup and strongly influenced by irrigation management.",
+            "Suited to areas of even slope.",
+            "For shallow rooted crops such as pasture, generally suitable for medium to heavy soils.",
+            "Normally not suitable for shallow rooted crops on light soils.",
+            "Suitable for lucerne on light to heavy soils.",
+            "This system is not suitable for very light soils.",
+            "Very suitable for grazing."
+        ],
+        "links": [
+            [
+                "Border-check irrigation design",
+                "https://agriculture.vic.gov.au/farm-management/water/irrigation/bordercheck-irrigation-design"
+            ],
+            [
+                "Border-check or sprinkler irrigation for perennial pastures",
+                "https://agriculture.vic.gov.au/farm-management/water/irrigation/bordercheck-or-sprinkler-irrigation-for-perennial-pastures"
+            ],
+            [
+                "Border check (flood) irrigation system",
+                "https://extensionaus.com.au/irrigatingag/docs/irrigation-in-northern-victoria/broadacre-irrigation-systems-in-northern-victoria/border-check-flood-irrigation-system/"
+            ]
+        ]
+    },
+    "Fixed or portable solid set sprinklers": {
+        "nice_name": "Solid Set Sprinkler Irrigation",
+        "description": "Solid set sprinkler irrigation systems are those in which sprinklers, with their assorted riser, lateral, and manifold pipes, are placed in a regular pattern over the entire irrigated area.",
+        "description_src": "http://ufdcimages.uflib.ufl.edu/IR/00/00/15/43/00001/AE38400.pdf",
+        "comments": [
+            "Suited to high value intensive vegetable, herb & ornamental crops, fixed systems for perennials.",
+            "Not generally suited for grazing."
+        ],
+        "links": [
+            [
+                "Solid Set Sprinkler Systems",
+                "https://eprints.nwisrl.ars.usda.gov/id/eprint/1157/1/316.pdf"
+            ],
+            [
+                "Field Evaluations of Irrigation Systems: Solid Set or Portable Sprinkler Systems",
+                "http://ufdcimages.uflib.ufl.edu/IR/00/00/15/43/00001/AE38400.pdf"
+            ]
+        ]
+    },
+    "Travelling gun or boom irrigators, with soft or hard hose.": {
+        "nice_name": "Travelling Gun or Boom Irrigators",
+        "description": "These irrigators come in two forms: with a soft hose/cable drum machine, or with a hard hose drum. Both incorporate a 'big gun' sprinkler. They are commonly used to irrigate pastures and lucerne, but machines with elevated wheels can be used on taller crops.<br><br>Rotary boom irrigators are similar in concept to the soft hose travelling irrigator except that the big gun sprinkler is replaced by a galvanised boom fitted with medium to low pressure sprinklers.",
+        "description_src": "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0009/176643/irrigation-evaluation-1.pdf",
+        "comments": [
+            "Very flexible and portable system.",
+            "Efficiency influenced by degree of overlap between irrigations.",
+            "Most suited to annual crops (including pastures) with low water requirements."
+        ],
+        "links": [
+            [
+                "Travelling irrigators and rotating booms",
+                "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0009/176643/irrigation-evaluation-1.pdf"
+            ],
+            [
+                "Tips for travelling gun irrigators",
+                "https://content-prod.dairyaustralia.com.au/-/media/project/dairy-australia-sites/national-home/resources/2020/07/09/tips-travelling-guns-irrigation-factsheet/tips-travelling-guns-irrigation-factsheet.pdf"
+            ]
+        ]
+    },
+    "Long lateral sprinklers (eg Van den Bosch, K-line)": {
+        "nice_name": "Long Lateral Sprinklers",
+        "description": "Pressure compensated sprinklers result in good uniformity, even with hills or longer lateral lines. K-Line irrigation is designed to fit the field (not the field altered to fit the irrigation system) K-Line can be designed around obstructions - resulting in large initial cost savings.",
+        "description_src": "https://www.k-linena.com/",
+        "comments": [
+            "Low capital cost but high labour requirements.",
+            "Suited to pasture only.",
+            "Suits areas with irregular shape or undulating topography"
+        ],
+        "links": [
+            [
+                "K-Line Irrigation",
+                "https://www.k-linena.com/"
+            ],
+            [
+                "Vanden Bussche Irrigation & Equipment Ltd.",
+                "https://vandenbussche.com/"
+            ]
+        ]
+    },
+    "Centre Pivot": {
+        "nice_name": "Centre Pivot Irrigation",
+        "description": "As the name suggests, centre pivots irrigate in a circular pattern around a central pivot point. Pivots are capable of applying water only or fertiliser, chemicals, and herbicides mixed with the water. This versatility can improve the efficiency of irrigation practices by using a single piece of machinery to perform several functions.",
+        "description_src": "https://www.irrigationaustralia.com.au/about-us/types-of-irrigation/centre-pivot-lateral-move-systems",
+        "comments": [
+            "Robust on rolling terrain.",
+            "If properly designed allows consistent efficient irrigation with minimal labour.",
+            "Best suited to large areas of crops with high water requirements and/or of high value."
+        ],
+        "links": [
+            [
+                "Centre Pivot and Lateral Move Systems",
+                "https://www.irrigationaustralia.com.au/about-us/types-of-irrigation/centre-pivot-lateral-move-systems"
+            ],
+            [
+                "Center pivot irrigation on Wikipedia",
+                "https://en.wikipedia.org/wiki/Center_pivot_irrigation"
+            ],
+            [
+                "Investing in centre pivot and lateral move systems",
+                "https://agriculture.vic.gov.au/farm-management/water/irrigation/centre-pivot-and-lateral-move-systems/investing-in-centre-pivot-and-lateral-move-systems"
+            ],
+            [
+                "Centre pivot system capacity",
+                "https://agriculture.vic.gov.au/farm-management/water/irrigation/centre-pivot-and-lateral-move-systems/centre-pivot-system-capacity"
+            ]
+        ]
+    },
+    "Linear or lateral move": {
+        "nice_name": "Linear/Lateral Move Irrigation",
+        "description": "Lateral moves are similar to centre pivots except they are not fixed at any point and move up and down rectangular fields. They are controlled by a guidance system and the LRDUs at either end of the machine. Lateral moves can be controlled by electricity generated or hydraulic oil pressure.",
+        "description_src": "https://www.irrigationaustralia.com.au/about-us/types-of-irrigation/centre-pivot-lateral-move-systems",
+        "comments": [
+            "If properly designed allows consistent efficient irrigation with minimal labour.",
+            "Best suited to large areas of crops with high water requirements and/or of high value.",
+            "Less appropriate on undulating or irregular terrain."
+        ],
+        "links": [
+            [
+                "Centre Pivot and Lateral Move Systems",
+                "https://www.irrigationaustralia.com.au/about-us/types-of-irrigation/centre-pivot-lateral-move-systems"
+            ],
+            [
+                "Investing in centre pivot and lateral move systems",
+                "https://agriculture.vic.gov.au/farm-management/water/irrigation/centre-pivot-and-lateral-move-systems/investing-in-centre-pivot-and-lateral-move-systems"
+            ]
+        ]
+    },
+    "Micro irrigation – microsprays or minisprinklers": {
+        "nice_name": "Microspray/Minisprinkler Micro Irrigation",
+        "description": "Micro-sprinkler systems are similar to drip irrigation systems except—rather than discharging water at discreet points—the water is sprayed out through a small sprinkler device at much lower rates than conventional sprinkler heads.",
+        "description_src": "https://waterwelljournal.com/irrigation-fundamentals-10/",
+        "comments": [
+            "Suited to vine and tree crops.",
+            "Accurate control of irrigation possible, best utilised with sophisticated scheduling methods.",
+            "Requires filtration system and relatively clean water."
+        ],
+        "links": [
+            ["Irrigation Fundamentals Part 9, Micro-Irrigation, Drip and Trickle Irrigation", "https://waterwelljournal.com/irrigation-fundamentals-10/"],
+            ["Drip vs. Micro Sprinklers", "http://trickle-l.com/new/archives/dvms.html"]
+        ]
+    },
+    "Micro irrigation - drip": {
+        "nice_name": "Drip Micro-Irrigation",
+        "description": "In drip irrigation, water is run through pipes (with holes in them) lying slightly above the ground next to the crops. Water slowly drips onto the crop roots and stems. Unlike spray irrigation, very little is lost to evaporation and the water can be directed only to the plants that need it, cutting back on water waste.",
+        "description_src": "https://www.usgs.gov/special-topic/water-science-school/science/irrigation-drip-or-microirrigation?qt-science_center_objects=0#qt-science_center_objects",
+        "comments": [
+            "Wetting pattern will be influenced by soil texture and discharge rate.",
+            "Suited to vine, tree crops and other forms of horticulture.",
+            "Accurate control of irrigation possible, best utilised with sophisticated scheduling methods.",
+            "Requires filtration system and relatively clean water."
+        ],
+        "links": [
+            [
+                "Irrigation: Drip or Microirrigation",
+                "https://www.usgs.gov/special-topic/water-science-school/science/irrigation-drip-or-microirrigation?qt-science_center_objects=0#qt-science_center_objects"
+            ],
+            [
+                "Learn about drip irrigation",
+                "https://www.irrigationaustralia.com.au/about-us/types-of-irrigation/drip-irrigation"
+            ]
+        ]
+    },
+    "Micro irrigation – subsurface drip": {
+        "nice_name": "Subsurface Drip Micro-Irrigation",
+        "description": "Subsurface irrigation uses a network of polyethylene pipes located just under the ground's surface to apply disinfected effluent in the root zone of plants, preventing airborne drift and minimising runoff.",
+        "description_src": "https://www.waternsw.com.au/water-quality/catchment/living/wastewater/systems/subsurface-irrigation",
+        "comments": [
+            "Suitable for horticulture and pasture irrigation (if properly designed).",
+            "Flexible (fits into most layouts).",
+            "Water applied within rootzone minimising losses.",
+            "Will require filtration system and relatively clean water.",
+            "May need additional irrigation system for crop germination"
+        ],
+        "links": [
+            [
+                "Subsurface irrigation",
+                "https://www.waternsw.com.au/water-quality/catchment/living/wastewater/systems/subsurface-irrigation"
+            ],
+            [
+                "Sub-surface drip irrigation systems",
+                "https://agriculture.vic.gov.au/farm-management/water/irrigation/drip-irrigation/subsurface-drip-irrigation-systems"
+            ],
+            [
+                "Water Use Efficiency of Surface Drip Irrigation versus an Alternative Subsurface Drip Irrigation Method",
+                "https://ascelibrary.org/doi/full/10.1061/(ASCE)IR.1943-4774.0000745"
+            ],
+            [
+                "Advantages and Disadvantages of Subsurface Drip Irrigation",
+                "https://extensionpublications.unl.edu/assets/pdf/ec776.pdf"
+            ]
+        ]
+    }
+}
