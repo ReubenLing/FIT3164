@@ -3,6 +3,10 @@ import json
 
 app = Flask(__name__)
 
+# DATA LOADING GOES HERE
+with open('data/irrigation_systems.json', 'r') as f:
+    irrigation_data = json.load(f)
+
 # FUNCTIONS GO HERE
 def water_model(cows):
     """Predict water usage."""
@@ -68,4 +72,19 @@ def irrigation_proto():
 
     # Get data from form
     print(request.form)
-    return render_template('models.html')
+
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # Reuben's test data for model outputs
+    # Feel free to delete when real thing is ready
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    irrigations = list(irrigation_data.keys())
+    li_of_data = []
+    for irrigation in irrigations:
+        li_of_data.append(irrigation_data[irrigation])
+    response = {
+        'irrigation_system': li_of_data,
+        'field_values': '',
+    }
+    return render_template('models.html', response=response)
