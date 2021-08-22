@@ -9,6 +9,7 @@ dirname = os.path.dirname(__file__)
 with open(os.path.join(dirname, 'data/irrigation_systems.json'), 'r') as f:
     irrigation_data = json.load(f)
 
+
 # FUNCTIONS GO HERE
 def water_model(cows):
     """Predict water usage."""
@@ -25,33 +26,36 @@ def water_model(cows):
     # Formatting
     if water_consumption % 1 == 0:
         water_consumption = int(water_consumption)
-    
+
     return water_consumption
+
 
 # def irrigation_model():
 
 
 # ROUTES GO HERE
-@ app.route('/')
+@app.route('/')
 def homepage():
     return render_template('index.html')
 
-@ app.route('/models')
+
+@app.route('/models')
 def models():
     return render_template('models.html')
 
-@ app.route('/methodology')
+
+@app.route('/methodology')
 def methodology():
     return render_template('methodology.html')
 
-@ app.route('/test_output', methods=['POST'])
+
+@app.route('/test_output', methods=['POST'])
 def test_output():
     """Handles test form submissions from "models" page."""
 
     # Get data from form
     num_cows_text = request.form['test_input']
     num_cows_range = request.form['test_range']
-
 
     # A simple model
     water_consumption_text = water_model(num_cows_text)
@@ -68,13 +72,13 @@ def test_output():
     # Serve modelled value to html template
     return render_template('models.html', response=response)
 
-@ app.route('/irrigation_proto', methods=['POST'])
+
+@app.route('/irrigation_proto', methods=['POST'])
 def irrigation_proto():
     """Prototype irrigation model handler"""
 
     # Get data from form
     print(request.form)
-
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Reuben's test data for model outputs
