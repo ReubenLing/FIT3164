@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request
 import json
+import os
 
 app = Flask(__name__)
 
 # DATA LOADING GOES HERE
-with open('data/irrigation_systems.json', 'r') as f:
+dirname = os.path.dirname(__file__)
+with open(os.path.join(dirname, 'data/irrigation_systems.json'), 'r') as f:
     irrigation_data = json.load(f)
 
 # FUNCTIONS GO HERE
