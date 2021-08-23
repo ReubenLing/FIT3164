@@ -69,20 +69,10 @@
 				</select>
 				<label>How uniform do you want the irrigation to be?</label>
 			</div>
-			<div class="input-field col s12 m6">
-				<select multiple name="water_loss">
-					<option value="" disabled selected>Choose your option</option>
-					<option value="channel_loss">Channel Losses</option>
-					<option value="evaporation">Evaporation</option>
-					<option value="evaporation_low">Evaporation (Not Severe)</option>
-					<option value="seepage">Seepage</option>
-					<option value="surface_runoff">Surface Runoff</option>
-					<option value="surface_runoff_possible">Surface Runoff (Possible not Guaranteed)</option>
-					<option value="wind_dispersion">Wind Dispersion</option>
-				</select>
-				<label>What sources of water loss are you most concerned about?</label>
-				<p>Be sure to only select one of the two options for "Evaporation" and "Surface Runoff".</p>
-			</div>
+			<p class="range-field col s12 m6">
+				How many recommendations do you want?
+				<input type="range" name="num_recs" min="1" max="10" value="3" />
+			</p>
 		</div>
 		<button class="btn waves-effect waves-light right" type="submit" name="action">Submit
 			<i class="material-icons right">send</i>
