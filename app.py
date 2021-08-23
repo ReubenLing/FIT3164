@@ -53,7 +53,6 @@ def irrigation_recommendation(input_dict):
         # Loop through attributes and match inputs
         for index in range(1, 6):
             if '-' in system[index]:  # range
-                print(system[index])
                 if int(user_values[index - 1]) in range(int(system[index][0]), int(system[index][3]) + 1):
                     current_sys_recs.append('green')
                 else:
@@ -136,7 +135,7 @@ def irrigation_proto():
     Naive Bayes could replace "score"
     """
 
-    # # Uncomment to see request data format
+    # Uncomment to see request data format
     # pprint(request.form)
 
     # Get recommendations based on form data
@@ -151,7 +150,7 @@ def irrigation_proto():
     # Sort recommendations by score
     recs.sort(key=lambda x: -int(x['score']))
 
-    # # Uncomment to see recommendation data format
+    # Uncomment to see recommendation data format
     # pprint(recs[0])
 
     # Render template
