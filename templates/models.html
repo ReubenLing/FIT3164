@@ -71,7 +71,7 @@
 			</div>
 			<p class="range-field col s12 m6">
 				How many recommendations do you want?
-				<input type="range" name="num_recs" min="1" max="10" value="3" />
+				<input type="range" name="num_recs" min="1" max="10" value="3">
 			</p>
 		</div>
 		<button class="btn waves-effect waves-light right" type="submit" name="action">Submit
@@ -82,7 +82,7 @@
 
 	<!-- Model output area -->
 	{% if response is defined %}
-	{% if response|length == 10 %}
+	{% if response[0].data is defined %}
 	{% for system in response %}
 	<div class="card">
 		<div class="card-content">
