@@ -81,9 +81,8 @@
 	<br><br>
 
 	<!-- Model output area -->
-	{% if response is defined %}
-	{% if response[0].data is defined %}
-	{% for system in response %}
+	{% if irri_response is defined %}
+	{% for system in irri_response %}
 	<div class="card">
 		<div class="card-content">
 			<span class="card-title">{{ system.data.nice_name }}</span>
@@ -140,7 +139,6 @@
 		</div>
 	</div>
 	{% endfor %}
-	{% endif %}
 	{% endif %}
 
 	<!-- Prototype form - for initial testing -->

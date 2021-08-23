@@ -154,4 +154,4 @@ def irrigation_proto():
     # pprint(recs[0])
 
     # Render template
-    return render_template('models.html', response=recs)
+    return render_template('models.html', irri_response=recs)
