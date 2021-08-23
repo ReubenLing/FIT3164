@@ -1,0 +1,22 @@
+﻿Method,Capital Cost*,Pumping Cost,Labour requirements,Application efficiency,Application uniformity,Potential water losses,Comments
+Surface irrigation- furrow,2--4,1,3--4,1--4,1--4,"E, R, S","Performance highly variable 7 depending on site setup and strongly influenced by irrigation management. Can have problems with erosion. Irrigation performance may be improved by using surge flow rather than constant flow irrigation. Double row cropping may also reduce overall water use
+
+Not suited for grazing"
+Surface irrigation- border-check,2--4,1,3--4,1--4,1--4,"C, E, R, S","Performance highly variable depending on site setup and strongly influenced by irrigation management.
+
+Suited to areas of even slope.
+- For shallow rooted crops such as pasture, generally suitable for medium to heavy soils.
+- Normally not suitable for shallow rooted crops on light soils.
+- Suitable for lucerne on light to heavy soils.
+- This system is not suitable for very light soils.
+Very suitable for grazing."
+Fixed or portable solid set sprinklers,4,1,1--4,4,4,"E, W, RP","Suited to high value intensive vegetable, herb & ornamental crops, fixed systems for perennials.
+Not generally suited for grazing"
+"Travelling gun or boom irrigators, with soft or hard hose.",2,4,1--2,1--4,1,"W, RP",Very flexible and portable system. Efficiency influenced by degree of overlap between irrigations. Most suited to annual crops (including pastures) with low water requirements
+"Long lateral sprinklers
+(eg Van den Bosch, K-line)",1,2,3--4,1,0,"W, E",Low capital cost but high labour requirements. Suited to pasture only. Suits areas with irregular shape or undulating topography
+Centre Pivot,2--4,1--3,1--3,4--5,4--5,"E, RP",Robust on rolling terrain. If properly designed allows consistent efficient irrigation with minimal labour. Best suited to large areas of crops with high water requirements and/or of high value
+Linear or lateral move,2--4,1--3,1--2,4--5,4--5,"E, RP",If properly designed allows consistent efficient irrigation with minimal labour. Best suited to large areas of crops with high water requirements and/or of high value. Less appropriate on undulating or irregular terrain
+Micro irrigation – microsprays or minisprinklers,4--5,1,1,5,4,"EL, RP","Suited to vine and tree crops. Accurate control of irrigation possible, best utilised with sophisticated scheduling methods. Requires filtration system and relatively clean water"
+Micro irrigation - drip,4--5,1,1,5,4,"EL, RP","Wetting pattern will be influenced by soil texture and discharge rate. Suited to vine, tree crops and other forms of horticulture. Accurate control of irrigation possible, best utilised with sophisticated scheduling methods. Requires filtration system and relatively clean water"
+Micro irrigation – subsurface drip,4--5,1,1,5,4,EL,Suitable for horticulture and pasture irrigation (if properly designed). Flexible (fits into most layouts). Water applied within rootzone minimising losses. Will require filtration system and relatively clean water. May need additional irrigation system for crop germination
