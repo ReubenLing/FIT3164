@@ -44,13 +44,13 @@ def irrigation_recommendation(input_dict):
 
     # Format user input values to list
     user_values = [input_dict[x] for x in fields]
-    user_values.append(input_dict.getlist("water_loss"))
 
     # Loop through irrigation systems and rank
     recommendations = []
     for system in irrigation_table[1:]:
         current_sys_recs = []
-        # Range measures
+
+        # Loop through attributes and match inputs
         for index in range(1, 6):
             if '-' in system[index]:  # range
                 print(system[index])
@@ -58,18 +58,22 @@ def irrigation_recommendation(input_dict):
                     current_sys_recs.append('green')
                 else:
                     current_sys_recs.append('red')
-            elif len(system[index]) == 1:
+            elif len(system[index]) == 1:  # single value
                 if user_values[index - 1] == system[index]:
                     current_sys_recs.append('green')
                 else:
                     current_sys_recs.append('red')
-            else:
+            else:  # shouldn't happen
                 raise Exception
 
+        # Append data to recs
         recommendations.append({
             'name': system[0],
             'matches': current_sys_recs,
             'score': len([x for x in current_sys_recs if x == "green"])})
+
+    # Slice unwanted recommendations
+    recommendations = recommendations[:int(input_dict['num_recs'])]
 
     return recommendations
 
