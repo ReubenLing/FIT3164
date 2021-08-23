@@ -1,6 +1,11 @@
 {% extends "_template.html" %}
 {% block modelsactive1 %}class="active"{% endblock %}
 {% block modelsactive2 %}class="active"{% endblock %}
+{% block styles %}
+<style>
+	table td + td { border-left:2px solid slategray; }
+</style>
+{% endblock %}
 {% block content %}
 <div class="container">
 	<!-- Sample form - not functional -->
@@ -87,31 +92,57 @@
 
 	<!-- Model output area -->
 	{% if response is defined %}
-	{% if response.irrigation_system is defined %}
-	{% for system in response.irrigation_system %}
+	{% if response|length == 10 %}
+	{% for system in response %}
 	<div class="card">
 		<div class="card-content">
-			<span class="card-title">{{ system.nice_name }}</span>
-			<p>{{ system.description|safe }}</p>
+			<span class="card-title">{{ system.data.nice_name }}</span>
+			<p>{{ system.data.description|safe }}</p>
 			<p><a href="{{ system.description_src }}">(source)</a></p>
 		</div>
 		<div class="card-tabs">
 			<ul class="tabs tabs-fixed-width">
-				<li class="tab"><a class="active" href="#comments{{ loop.index }}">Considerations</a></li>
+				<li class="tab"><a class="active" href="#fields{{ loop.index }}">Suitability</a></li>
+				<li class="tab"><a href="#comments{{ loop.index }}">Considerations</a></li>
 				<li class="tab"><a href="#reading{{ loop.index }}">Further Reading</a></li>
 			</ul>
 		</div>
 		<div class="card-content grey lighten-4">
+			<div id="fields{{ loop.index }}">
+				<ul class="browser-default">
+					<h3>Score: {{ system.score }}</h3>
+					<table class="centered">
+						<thead>
+							<tr>
+								<th>Capital Cost</th>
+								<th>Pumping Cost</th>
+								<th>Labour Requirements</th>
+								<th>Efficiency</th>
+								<th>Uniformity</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="{{ system.matches[0] }} lighten-2">{{ system.fields[0] }}</td>
+								<td class="{{ system.matches[1] }} lighten-2">{{ system.fields[1] }}</td>
+								<td class="{{ system.matches[2] }} lighten-2">{{ system.fields[2] }}</td>
+								<td class="{{ system.matches[3] }} lighten-2">{{ system.fields[3] }}</td>
+								<td class="{{ system.matches[4] }} lighten-2">{{ system.fields[4] }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</ul>
+			</div>
 			<div id="comments{{ loop.index }}">
 				<ul class="browser-default">
-					{% for comment in system.comments %}
+					{% for comment in system.data.comments %}
 					<li>{{ comment }}</li>
 					{% endfor %}
 				</ul>
 			</div>
 			<div id="reading{{ loop.index }}">
 				<ul class="browser-default">
-					{% for pair in system.links %}
+					{% for pair in system.data.links %}
 					<li><a href="{{ pair[1] }}">{{ pair[0] }}</a></li>
 					{% endfor %}
 				</ul>
