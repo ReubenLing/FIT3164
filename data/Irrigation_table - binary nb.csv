@@ -1,0 +1,10 @@
+﻿Surface irrigation- furrow,0,1,1,0,1,0,0,0,0,0,1,1,1,1,1,0,0,1,1,0,1,0,1,0,1,0,0,0
+Surface irrigation- border-check,0,1,1,0,1,0,0,0,0,0,1,1,1,1,1,0,0,1,1,0,1,0,1,0,1,1,0,0
+Fixed or portable solid set sprinklers,0,0,1,0,1,0,0,0,1,0,0,1,0,0,1,0,0,1,1,0,1,0,0,1,0,0,1,0
+"Travelling gun or boom irrigators with soft or hard hose.",0,1,1,0,0,0,0,1,0,1,0,0,1,1,0,0,0,1,0,0,0,0,0,1,1,0,0,1
+"Long lateral sprinklers (eg Van den Bosch/ K-line)",1,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0
+Centre Pivot,0,1,1,0,1,1,1,0,1,1,1,0,0,0,1,1,0,0,1,1,1,0,0,1,0,0,0,0
+Linear or lateral move,0,1,1,0,1,1,1,0,1,1,0,0,0,0,1,1,0,0,1,1,1,0,0,1,0,0,0,0
+Micro irrigation – microsprays or minisprinklers,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0,0,0
+Micro irrigation - drip,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0,0,0
+Micro irrigation – subsurface drip,0,0,1,1,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0,0,0
