@@ -1,11 +1,3 @@
-
-"""
-# testing
-y_pred = gnb.fit(irrDataX, irrDataY).predict(irrTestX)
-
-print("Number of mislabeled points out of a total %d points : %d"
-      % (len(irrTestX), (irrTestY != y_pred).sum()))
-"""
 from sklearn.naive_bayes import GaussianNB
 import csv
 def naiveBayes(lstToPredict):
@@ -53,5 +45,3 @@ def naiveBayes(lstToPredict):
     print("Number of mislabeled points out of a total %d points : %d"
         % (len(irrTestX), (irrTestY != y_pred).sum()))
     """
-
-print(naiveBayes([False, False, True, False, True, False, False, False, False, False, True, False, False, True, False, False, False, False, True]))
