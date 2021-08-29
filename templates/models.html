@@ -81,9 +81,11 @@
 	</form>
 	<br><br>
 
+	<!-- Model error warning -->
+	<p class="red-text">{{ error }}</p>
+
 	<!-- Model output area - popup -->
 	{% if irri_response is defined %}
-	<h6 class="red-text">Option 1: Popup</h6>
 	<p class="center-align">
 		<a class="waves-effect waves-light btn modal-trigger blue" href="#irrigation_modal">View Results!</a>
 	</p>
