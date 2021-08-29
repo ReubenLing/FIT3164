@@ -135,6 +135,12 @@ def irrigation_proto():
     Naive Bayes could replace "score"
     """
 
+    # Catch empty fields
+    keys = ["capital_cost", "pumping_cost", "labour_requirements", "efficiency", "uniformity"]
+    for key in keys:
+        if key not in request.form.keys():
+            return render_template('models.html', error="All form fields must have a value selected.")
+
     # Uncomment to see request data format
     # pprint(request.form)
 
