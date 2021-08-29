@@ -14,7 +14,6 @@
 	<h3>Irrigation Recommendations</h3>
 	<p class='flow-text'>Looking for a new irrigation system? Enter your details below and find the most suitable
 		irrigation system for your needs, from data provided by the Agriculture Victoria's Resources Online.</p>
-	<p class='red-text'>Values are placeholders for now</p>
 	<form action="{{ url_for('irrigation_proto') }}" method="post">
 		<div class="row">
 			<div class="input-field col s12 m6">
@@ -110,7 +109,6 @@
 				<div class="card-content grey lighten-4">
 					<div id="fields{{ loop.index }}">
 						<ul class="browser-default">
-							<h3>Score: {{ system.score }}</h3>
 							<table class="centered">
 								<thead>
 									<tr>
@@ -157,151 +155,8 @@
 	</div>
 	{% endif %}
 
-	<!-- Model output area - single collapsible -->
-	{% if irri_response is defined %}
-	<h6 class="red-text">Option 2: Single collapsible</h6>
-	<ul class="collapsible">
-		<li>
-			<div class="collapsible-header">Expand to show outputs</div>
-			<div class="collapsible-body">
-				{% for system in irri_response %}
-				<div class="card">
-					<div class="card-content">
-						<span class="card-title">{{ system.data.nice_name }}</span>
-						<p>{{ system.data.description|safe }}</p>
-						<p><a href="{{ system.description_src }}">(source)</a></p>
-					</div>
-					<div class="card-tabs">
-						<ul class="tabs tabs-fixed-width">
-							<li class="tab"><a class="active" href="#fields{{ loop.index }}">Suitability</a></li>
-							<li class="tab"><a href="#comments{{ loop.index }}">Considerations</a></li>
-							<li class="tab"><a href="#reading{{ loop.index }}">Further Reading</a></li>
-						</ul>
-					</div>
-					<div class="card-content grey lighten-4">
-						<div id="fields{{ loop.index }}">
-							<ul class="browser-default">
-								<h3>Score: {{ system.score }}</h3>
-								<table class="centered">
-									<thead>
-										<tr>
-											<th>Capital Cost</th>
-											<th>Pumping Cost</th>
-											<th>Labour Requirements</th>
-											<th>Efficiency</th>
-											<th>Uniformity</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="{{ system.matches[0] }} lighten-2">{{ system.fields[0] }}</td>
-											<td class="{{ system.matches[1] }} lighten-2">{{ system.fields[1] }}</td>
-											<td class="{{ system.matches[2] }} lighten-2">{{ system.fields[2] }}</td>
-											<td class="{{ system.matches[3] }} lighten-2">{{ system.fields[3] }}</td>
-											<td class="{{ system.matches[4] }} lighten-2">{{ system.fields[4] }}</td>
-										</tr>
-									</tbody>
-								</table>
-							</ul>
-						</div>
-						<div id="comments{{ loop.index }}">
-							<ul class="browser-default">
-								{% for comment in system.data.comments %}
-								<li>{{ comment }}</li>
-								{% endfor %}
-							</ul>
-						</div>
-						<div id="reading{{ loop.index }}">
-							<ul class="browser-default">
-								{% for pair in system.data.links %}
-								<li><a href="{{ pair[1] }}">{{ pair[0] }}</a></li>
-								{% endfor %}
-							</ul>
-						</div>
-					</div>
-				</div>
-				{% endfor %}
-			</div>
-		</li>
-	</ul>
-	{% endif %}
-
-	<!-- Model output area - multi collapsible -->
-	{% if irri_response is defined %}
-	<h6 class="red-text">Option 3: Multiple collapsible</h6>
-	<ul class="collapsible">
-		{% for system in irri_response %}
-		<li>
-			<div class="collapsible-header">{{ system.data.nice_name }}</div>
-			<div class="collapsible-body">
-				<div class="card">
-					<div class="card-content">
-						<span class="card-title">{{ system.data.nice_name }}</span>
-						<p>{{ system.data.description|safe }}</p>
-						<p><a href="{{ system.description_src }}">(source)</a></p>
-					</div>
-					<div class="card-tabs">
-						<ul class="tabs tabs-fixed-width">
-							<li class="tab"><a class="active" href="#fields{{ loop.index }}">Suitability</a></li>
-							<li class="tab"><a href="#comments{{ loop.index }}">Considerations</a></li>
-							<li class="tab"><a href="#reading{{ loop.index }}">Further Reading</a></li>
-						</ul>
-					</div>
-					<div class="card-content grey lighten-4">
-						<div id="fields{{ loop.index }}">
-							<ul class="browser-default">
-								<h3>Score: {{ system.score }}</h3>
-								<table class="centered">
-									<thead>
-										<tr>
-											<th>Capital Cost</th>
-											<th>Pumping Cost</th>
-											<th>Labour Requirements</th>
-											<th>Efficiency</th>
-											<th>Uniformity</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="{{ system.matches[0] }} lighten-2">{{ system.fields[0] }}
-											</td>
-											<td class="{{ system.matches[1] }} lighten-2">{{ system.fields[1] }}
-											</td>
-											<td class="{{ system.matches[2] }} lighten-2">{{ system.fields[2] }}
-											</td>
-											<td class="{{ system.matches[3] }} lighten-2">{{ system.fields[3] }}
-											</td>
-											<td class="{{ system.matches[4] }} lighten-2">{{ system.fields[4] }}
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</ul>
-						</div>
-						<div id="comments{{ loop.index }}">
-							<ul class="browser-default">
-								{% for comment in system.data.comments %}
-								<li>{{ comment }}</li>
-								{% endfor %}
-							</ul>
-						</div>
-						<div id="reading{{ loop.index }}">
-							<ul class="browser-default">
-								{% for pair in system.data.links %}
-								<li><a href="{{ pair[1] }}">{{ pair[0] }}</a></li>
-								{% endfor %}
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</li>
-		{% endfor %}
-	</ul>
-	{% endif %}
-
 	<!-- Prototype form - for initial testing -->
-	<h3>Prototype Form</h3>
+	<!-- <h3>Prototype Form</h3>
 	<p class="flow-text">Enter the number of cows in your farm below, and we will predict your water
 		consumption.</p>
 	<form action="{{ url_for('test_output') }}" method="post">
@@ -318,12 +173,12 @@
 		<button class="btn waves-effect waves-light right" type="submit" name="action">Submit
 			<i class="material-icons right">send</i>
 		</button>
-	</form>
+	</form> -->
 
 	<!-- Model output area -->
 	{% if response is defined %}
 	{% if response.num_cows_text is defined %}
-	<div class="row">
+	<!-- <div class="row">
 		<table class="centered highlight">
 			<thead>
 				<tr>
@@ -342,7 +197,7 @@
 				</tr>
 			</tbody>
 		</table>
-	</div>
+	</div> -->
 	{% else %}
 	<!-- Sample form output - not functional -->
 	<!-- <div class="row">
