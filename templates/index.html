@@ -1,10 +1,37 @@
 {% extends "_template.html" %}
 {% block mainactive1 %}class="active"{% endblock %}
 {% block mainactive2 %}class="active"{% endblock %}
+{% block navclass %}{% endblock %}
 {% block styles %}
 <style>
 	html {
 		scroll-behavior: smooth;
+	}
+
+	html,
+	body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		scroll-behavior: smooth;
+		background-color: #fff
+	}
+
+	nav {
+		background-color: rgba(255, 255, 255, 0.7);
+		backdrop-filter: blur(6px);
+	}
+
+	nav ul a,
+	nav .brand-logo {
+		color: rgba(128, 128, 128, 0.7)
+	}
+
+	body {
+		background: url("/static/images/farm.jpg") no-repeat center/cover, #bedde0;
+		/* filter: blur(2px);
+		-webkit-filter: blur(2px); */
 	}
 
 	.parallax-container {
@@ -43,6 +70,27 @@
 		position: sticky;
 		top: 64px;
 	}
+
+	.header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		align-items: center;
+		overflow: hidden;
+		height: 100vh;
+		color: #fff;
+	}
+
+	.scrolldown {
+		position: absolute;
+		bottom: 0;
+		margin-bottom: 25px;
+		padding: 10px;
+		border-radius: 50%;
+		transition: .15s;
+	}
+
+	
 </style>
 {% endblock %}
 {% block content %}
@@ -50,18 +98,20 @@
 	<div class="progress-bar" id="progressBar"></div>
 </div>
 
-<div class="parallax-container">
-	<div class="parallax"><img src="static/images/cows.jpg"></div>
-	<h1></h1>
-	<h1 class="white-text" style="margin-left:100px;margin-top:600px">Water Management in Dairy Farms</h1>
-	<p class="center-align">
-		<a class="btn-floating btn-large waves-effect waves-light blue pulse" href="#intro"><i
-				class="material-icons">south</i></a>
-	</p>
+<div class="header">
+	<div class="section">
+		<h1 class="white-text center-align">Water Management in Dairy Farms</h1>
+		<!-- <h6 class="grey-text center-align">FIT3164 DATA SCIENCE PROJECT // S2 2021<br>BENITA SIEN // SHYAM SRINIVAS //
+			REUBEN LING</h6> -->
+	</div>
+	<a class="btn-floating btn-large waves-effect waves-light pulse scrolldown" onclick="pageScroll()"><i
+			class="material-icons">water_drop</i></a>
 </div>
-<div class="container">
+<div class="container content">
 	<div class="row">
 		<div class="col s12 m9 l10">
+
+			<!-- Introduction section -->
 			<div id="intro" class="section scrollspy">
 				<p class="flow-text">Despite being the industry that consumes the most water in Australia, there exists
 					a lack
@@ -84,86 +134,162 @@
 				</p>
 			</div>
 
-			<!-- Test Tableau embed -->
-			<div class="video-container">
-				<iframe class="responsive-img" frameborder="0" scrolling="no"
-					src="https://public.tableau.com/views/CowsperState/Dashboard1?:language=en-GB&publish=yes&:display_count=n&:origin=viz_share_link&:showVizHome=no">
-				</iframe>
+			<!-- 
+				Dairy farms in Australia
+				-- Talk about the per-state breakdown
+				-- Mention Victoria as having the most dairy farms in the country
+			-->
+			<div id="australia" class="section scrollspy">
+				<h3 class="blue-text text-accent-2">Australian Dairy Farms</h3>
+				<p>Placeholder text</p>
+
+				<!-- Area + choropleth visualisation -->
+				<div class="video-container">
+					<iframe class="responsive-img" frameborder="0" scrolling="no"
+						src="https://public.tableau.com/views/CowsperState/Dashboard1?:language=en-GB&publish=yes&:display_count=n&:origin=viz_share_link&:showVizHome=no">
+					</iframe>
+				</div>
+				<p>As illustrated in the visualisation above, Victorian farms have by far the most cows in the country.
+					If all
+					Victorian farms were to implement efficient water management strategies, there would be a
+					significant impact on water consumption in Australia as a whole.</p>
 			</div>
 
-			<div id="usage" class="section scrollspy">
-				<h3 class="blue-text text-accent-2">Water Usage Statistics</h3>
-				<p>Farms fsdlfkjsdlfkasg asfjhwlkjfh aerughaer uhgfuifhalwi urhauwihf waiuh water asldkfjhlkwah weufh
-					werilfgh
-					leriuhgvl uawerhsf uwhrg oiuehf iuhreviuh eriuhv eriughwequfh eruihv wreiuhv rwiuahgiuh welu
-					tfhlwreiuhg
-					ireugh iuerhgviuorhvui oherviu hwrvcuih wqefuihqw fgvuihergluk hwrqiglfuh iouh wqriolfhio
-					uehviuwerhf
-					iurwhfg qiwuaecuiar gfhvlierufgh rwiuhg erguiv hetiugh eriuvh weuifhqowifh qwoeifuheoasriugh
-					eoiluhvbaiwuoehiou rghviuerh uiwrh goiwruhg ioeruh</p>
-				<p class="center-align">
-					<img src="static/images/infographic1.jpg">
-				</p>
-			</div>
-
-			<div id="infographic" class="section scrollspy">
-				<h3 class="blue-text text-accent-2">Example Structure</h3>
-				<h5 class="blue-text text-accent-1">Example 1</h5>
-				<div class="row">
-					<div class="col s8">
-						<p>ioe fjwij weoifj weoifjweo ifjweoifj weoifjweo ifjwieo fjoweifj aowiefj awlijfawl;ijk aw;oeij
-							awoerifgj
-							eorighj poeisrg poawijfp owijarfo iajwgio harwego ijwrgoi jawergi jersgoi hjesroguih ergukhj
-							eralkgj
-							aerklij eroigj eroigjero igjerog ijergoij ersog;ij erogij erogij eropgij erpgoij eropgijer
-							goipjergpo
-							iejasguioh ergiu awhrfgkljh lgkajshr qwaiougpseuigwaeiotufg poeirtsg opiwrgj psotiugj
-							wop9aiugoi
-							esurgopi rjev oerijv wrifgj rijv wrivj eriogj weraiogj wropig jwerogi jerg ioerjg
-							eroigjawefoiwa egi
-						</p>
-					</div>
-					<div class="col s4" style="overflow:hidden">
-						<img src="static/images/infographic1.jpg" style='object-fit:fill'>
-					</div>
-				</div>
-				<h5 class="blue-text text-accent-1">Example 1</h5>
-				<div class="row">
-					<div class="col s4" style="overflow:hidden">
-						<img src="static/images/infographic1.jpg" style='object-fit:fill'>
-					</div>
-					<div class="col s8">
-						<p>ioe fjwij weoifj weoifjweo ifjweoifj weoifjweo ifjwieo fjoweifj aowiefj awlijfawl;ijk aw;oeij
-							awoerifgj
-							eorighj poeisrg poawijfp owijarfo iajwgio harwego ijwrgoi jawergi jersgoi hjesroguih ergukhj
-							eralkgj
-							aerklij eroigj eroigjero igjerog ijergoij ersog;ij erogij erogij eropgij erpgoij eropgijer
-							goipjergpo
-							iejasguioh ergiu awhrfgkljh lgkajshr qwaiougpseuigwaeiotufg poeirtsg opiwrgj psotiugj
-							wop9aiugoi
-							esurgopi rjev oerijv wrifgj rijv wrivj eriogj weraiogj wropig jwerogi jerg ioerjg
-							eroigjawefoiwa egi
-						</p>
-					</div>
-				</div>
-				<h6>References</h6>
+			<!-- 
+				Factors in water usage
+				-- Visualisation: SPLOM
+			-->
+			<div id="factors" class="section scrollspy">
+				<h3 class="blue-text text-accent-2">Factors in Water Usage</h3>
+				<p>Before discussing how to reduce water consumption, it is important to understand the various factors
+					that contribute to water consumption. These factors can include:</p>
 				<ul class="browser-default">
-					<li>Seametrics. (n.d.). Infographic: Interesting Facts About Farm Water Conservation [Image].
-						Retrieved from
-						<a
-							href="https://www.seametrics.com/blog/farm-water-infographic/">https://www.seametrics.com/blog/farm-water-infographic/</a>
-					</li>
-					<li>Yellowstone National Park. (2014). Cow bison and calf [Photograph]. Retrieved from <a
-							href="https://www.flickr.com/photos/80223459@N05/14952467567">https://www.flickr.com/photos/80223459@N05/14952467567</a>
-					</li>
+					<li>Number of cows</li>
+					<li>Temperature</li>
+					<li>Rainwater tank volume</li>
+					<li>Size of farm</li>
 				</ul>
+				<p>The scatterplot matrix below plots instances of these various attributes against one another, with
+					trendlines to display correlations between the parameters.</p>
+
+				<!-- SPLOM visualisation -->
+				<!-- <div class="video-container">
+					<iframe class="responsive-img" frameborder="0" scrolling="no"
+						src="VIS-LINK-GOES-HERE">
+					</iframe>
+				</div> -->
+			</div>
+
+			<!-- 
+				Water flow in dairy farms
+				-- Average water consumption in Victorian farms
+				-- Visualisation: Histogram
+				-- Various ways water is consumed
+				-- Visualisation: Sankey
+			-->
+			<div id="flow" class="section scrollspy">
+				<h3 class="blue-text text-accent-2">Water Flow in Dairy Farms</h3>
+				<p>The below histogram shows the average water consumption across dairy farms in Victoria.</p>
+
+				<!-- Histogram visualisation -->
+				<!-- <div class="video-container">
+					<iframe class="responsive-img" frameborder="0" scrolling="no"
+						src="VIS-LINK-GOES-HERE">
+					</iframe>
+				</div> -->
+
+				<p>Dairy farms use a lot of water, but this water is used in a variety of ways. The below flow diagram
+					shows the average distribution of water among the various tasks that require water in a dairy farm.
+				</p>
+
+				<!-- Flow diagram visualisation -->
+				<!-- <div class="video-container">
+					<iframe class="responsive-img" frameborder="0" scrolling="no"
+						src="VIS-LINK-GOES-HERE">
+					</iframe>
+				</div> -->
+
+				<p>Let's dive into each of these main uses.</p>
+			</div>
+
+			<div id="irrigation" class="section scrollspy">
+				<h4 class="blue-text text-accent-1">Irrigation</h4>
+				<p>The majority of dairy farms employ irrigation on their fields, ensuring the plants grow healthily to
+					feed the grazing cows.</p>
+				<p>The type and implementation of these irrigation systems have an impact on dairy farming, so it is
+					important to select an irrigation system that works for your farm's requirements.</p>
+				<p>The below radar chart shows the properties of 10 possible irrigation systems.</p>
+
+				<!-- Radar chart visualisation -->
+				<!-- <div class="video-container">
+					<iframe class="responsive-img" frameborder="0" scrolling="no"
+						src="VIS-LINK-GOES-HERE">
+					</iframe>
+				</div> -->
+
+				<p>To assist with the selection of an irrigation system, we have created a recommendation system that
+					will provide information on the most suitable irrigation systems for your preferences. This can be
+					accessed in our <a href='/models'>Models</a> page.</p>
+			</div>
+
+			<div id="consumption" class="section scrollspy">
+				<h4 class="blue-text text-accent-1">Cow Consumption</h4>
+				<p>A major component of dairy farm water usage goes directly to the cows in the form of drinking water.
+				</p>
+				<p>The amount of water needed by cows varies based on the season and temperature. The below spiral chart
+					shows cow water consumption over a period of [???] years.</p>
+
+				<!-- Spiral chart visualisation -->
+				<!-- <div class="video-container">
+					<iframe class="responsive-img" frameborder="0" scrolling="no"
+						src="VIS-LINK-GOES-HERE">
+					</iframe>
+				</div> -->
+			</div>
+
+			<div id="washing" class="section scrollspy">
+				<h4 class="blue-text text-accent-1">Washing and Cleaning</h4>
+				<p>Water must be allocated to washing and cleaning sheds. This obviously depends on the surface area of
+					the shed, as well as the method of cleaning employed.</p>
+				<p>[NEED TO CLARIFY WHAT TO WRITE / VISUALISE HERE]</p>
+
+				<!-- ??? visualisation -->
+				<!-- <div class="video-container">
+					<iframe class="responsive-img" frameborder="0" scrolling="no"
+						src="VIS-LINK-GOES-HERE">
+					</iframe>
+				</div> -->
+			</div>
+
+			<div id="runoffs" class="section scrollspy">
+				<h4 class="blue-text text-accent-1">Runoffs</h4>
+				<p>[NEED TO CLARIFY WHAT TO WRITE / VISUALISE HERE]</p>
+
+				<!-- ???  visualisation -->
+				<!-- <div class="video-container">
+					<iframe class="responsive-img" frameborder="0" scrolling="no"
+						src="VIS-LINK-GOES-HERE">
+					</iframe>
+				</div> -->
+			</div>
+
+			<div id="reduction" class="section scrollspy">
+				<h3 class="blue-text text-accent-2">Reducing Water Usage</h3>
+				<p>[NEED TO CLARIFY WHAT TO WRITE / VISUALISE HERE]</p>
+
 			</div>
 		</div>
 		<div class="col hide-on-small-only m3 l2 sticky">
 			<ul class="section table-of-contents">
 				<li><a href="#intro">Introduction</a></li>
-				<li><a href="#usage">Water Usage</a></li>
-				<li><a href="#infographic">Structure Example</a></li>
+				<li><a href="#australia">Australian Dairy Farms</a></li>
+				<li><a href="#factors">Factors in Water Usage</a></li>
+				<li><a href="#flow">Water Flow in Dairy Farms</a></li>
+				<li><a href="#irrigation">Factors in Water Usage</a></li>
+				<li><a href="#consumption">Cow Consumption</a></li>
+				<li><a href="#washing">Washing and Cleaning</a></li>
+				<li><a href="#runoffs">Runoffs</a></li>
+				<li><a href="#reduction">Reducing Water Usage</a></li>
 			</ul>
 		</div>
 	</div>
@@ -182,5 +308,11 @@
 	window.onscroll = function () {
 		progressBarScroll();
 	};
+</script>
+<script>
+	function pageScroll() {
+		let pageHeight = window.innerHeight;
+		window.scrollBy(0, pageHeight);
+	}
 </script>
 {% endblock %}
