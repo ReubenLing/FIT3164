@@ -1,5 +1,5 @@
 
-irrigation="irrigation_table.csv"
+irrigation="C:\Users\shyam\Documents\GitHub\FIT3164\data\irrigation_table- clean binary.csv"
 train.row=sample(1:nrow(irrigation),0.7*nrow(irrigation))
 irri.train=irrigation[train.row,]
 irii.test=irrigation[-train.row]
