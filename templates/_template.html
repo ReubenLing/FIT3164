@@ -34,7 +34,7 @@
 <body>
     <header>
         <div class="navbar-fixed">
-            <nav class="grey darken-3" role="navigation">
+            <nav {% block navclass %}class="grey darken-3"{% endblock %} role="navigation">
                 <div class="nav-wrapper container"><a id="logo-container"
                         onclick='window.scrollTo({top: 0, behavior: "smooth"});'
                         class="brand-logo hide-on-med-and-down">Water
@@ -84,7 +84,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                Made using <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
             </div>
         </div>
     </footer>
