@@ -19,14 +19,13 @@
 	}
 
 	nav {
-		background-color: rgba(181, 225, 255, 0.7);
+		background-color: rgba(255, 255, 255, 0.7);
 		backdrop-filter: blur(6px);
 	}
 
 	nav ul a,
 	nav .brand-logo {
-		color: rgba(128, 128, 128, 0.7)
-	}
+		color:  rgba(128, 128,128,0.7);}
 
 	body {
 		background: url("/static/images/farm.jpg") no-repeat center/cover, #bedde0;
@@ -59,7 +58,7 @@
 	}
 
 	.progress-bar {
-		background-color: #2196f3;
+		background-color: #4AC3ED;
 		height: 10px;
 		width: 0%;
 	}
@@ -78,7 +77,7 @@
 		align-items: center;
 		overflow: hidden;
 		height: 100vh;
-		color: rgb(183, 238, 255);
+		color: #2CA5DD
 	}
 
 	.scrolldown {
@@ -88,9 +87,31 @@
 		padding: 10px;
 		border-radius: 50%;
 		transition: .15s;
+		background-color: #4AC3ED;
+	}
+	h1{
+		color:#fcfcfc
+	}
+	h3{
+		color:#229BD3
+
+	}
+	
+	h4{
+		color:#4CBAE6
 	}
 
+	.table-of-contents a.active {
+		border-left: 2px solid #1E6091;
 	
+	}
+	.table-of-contents a:hover {
+		border-left: 1px solid #2CA5DD;
+	}
+	blockquote{
+		border-left: 5px solid #229BD3
+	}
+
 </style>
 {% endblock %}
 {% block content %}
@@ -140,7 +161,8 @@
 				-- Mention Victoria as having the most dairy farms in the country
 			-->
 			<div id="australia" class="section scrollspy">
-				<h3 class="blue-text text-accent-2">Australian Dairy Farms</h3>
+	
+				<h3 class=>Australian Dairy Farms</h3>
 				<p>Placeholder text</p>
 
 				<!-- Area + choropleth visualisation -->
@@ -160,7 +182,7 @@
 				-- Visualisation: SPLOM
 			-->
 			<div id="factors" class="section scrollspy">
-				<h3 class="blue-text text-accent-2">Factors in Water Usage</h3>
+				<h3 class=>Factors in Water Usage</h3>
 				<p>Before discussing how to reduce water consumption, it is important to understand the various factors
 					that contribute to water consumption. These factors can include:</p>
 				<ul class="browser-default">
@@ -188,7 +210,7 @@
 				-- Visualisation: Sankey
 			-->
 			<div id="flow" class="section scrollspy">
-				<h3 class="blue-text text-accent-2">Water Flow in Dairy Farms</h3>
+				<h3 class=>Water Flow in Dairy Farms</h3>
 				<p>The below histogram shows the average water consumption across dairy farms in Victoria.</p>
 
 				<!-- Histogram visualisation -->
@@ -213,7 +235,7 @@
 			</div>
 
 			<div id="irrigation" class="section scrollspy">
-				<h4 class="blue-text text-accent-1">Irrigation</h4>
+				<blockquote></block><h4 class=>Irrigation</h4></blockquote>
 				<p>The majority of dairy farms employ irrigation on their fields, ensuring the plants grow healthily to
 					feed the grazing cows.</p>
 				<p>The type and implementation of these irrigation systems have an impact on dairy farming, so it is
@@ -233,7 +255,7 @@
 			</div>
 
 			<div id="consumption" class="section scrollspy">
-				<h4 class="blue-text text-accent-1">Cow Consumption</h4>
+				<blockquote><h4 class=>Cow Consumption</h4></blockquote>
 				<p>A major component of dairy farm water usage goes directly to the cows in the form of drinking water.
 				</p>
 				<p>The amount of water needed by cows varies based on the season and temperature. The below spiral chart
@@ -248,7 +270,7 @@
 			</div>
 
 			<div id="washing" class="section scrollspy">
-				<h4 class="blue-text text-accent-1">Washing and Cleaning</h4>
+				<blockquote><h4 class=>Washing and Cleaning</h4></blockquote>
 				<p>Water must be allocated to washing and cleaning sheds. This obviously depends on the surface area of
 					the shed, as well as the method of cleaning employed.</p>
 				<p>[NEED TO CLARIFY WHAT TO WRITE / VISUALISE HERE]</p>
@@ -262,7 +284,7 @@
 			</div>
 
 			<div id="runoffs" class="section scrollspy">
-				<h4 class="blue-text text-accent-1">Runoffs</h4>
+			<blockquote><h4 class=>Runoffs</h4></blockquote>
 				<p>[NEED TO CLARIFY WHAT TO WRITE / VISUALISE HERE]</p>
 
 				<!-- ???  visualisation -->
@@ -274,7 +296,7 @@
 			</div>
 
 			<div id="reduction" class="section scrollspy">
-				<h3 class="blue-text text-accent-2">Reducing Water Usage</h3>
+				<h3 class=>Reducing Water Usage</h3>
 				<p>[NEED TO CLARIFY WHAT TO WRITE / VISUALISE HERE]</p>
 
 			</div>
