@@ -1,0 +1,103 @@
+{
+    "tanks": {
+        "small": [1000, 2000],
+        "medium": [2000, 10000],
+        "large": [10000, 15000]
+    },
+    "locations": [{
+            "location": "Alexandra",
+            "rainfall": 708,
+            "evaporation": 1350
+        },
+        {
+            "location": "Bairnsdale",
+            "rainfall": 710,
+            "evaporation": 1100
+        },
+        {
+            "location": "Ballarat",
+            "rainfall": 691,
+            "evaporation": 1150
+        },
+        {
+            "location": "Benalla",
+            "rainfall": 668,
+            "evaporation": 1350
+        },
+        {
+            "location": "Bendigo",
+            "rainfall": 478,
+            "evaporation": 1400
+        },
+        {
+            "location": "Charlton",
+            "rainfall": 431,
+            "evaporation": 1650
+        },
+        {
+            "location": "Colac",
+            "rainfall": 726,
+            "evaporation": 1250
+        },
+        {
+            "location": "Hamilton",
+            "rainfall": 687,
+            "evaporation": 1300
+        },
+        {
+            "location": "Horsham",
+            "rainfall": 444,
+            "evaporation": 1550
+        },
+        {
+            "location": "Kerang",
+            "rainfall": 372,
+            "evaporation": 1650
+        },
+        {
+            "location": "Leongatha",
+            "rainfall": 952,
+            "evaporation": 1100
+        },
+        {
+            "location": "Mildura",
+            "rainfall": 282,
+            "evaporation": 1950
+        },
+        {
+            "location": "Orbost",
+            "rainfall": 845,
+            "evaporation": 1100
+        },
+        {
+            "location": "Portland",
+            "rainfall": 837,
+            "evaporation": 1350
+        },
+        {
+            "location": "Sale",
+            "rainfall": 607,
+            "evaporation": 1300
+        },
+        {
+            "location": "Swan Hill",
+            "rainfall": 349,
+            "evaporation": 1700
+        },
+        {
+            "location": "Wangaratta",
+            "rainfall": 636,
+            "evaporation": 1350
+        },
+        {
+            "location": "Warragul",
+            "rainfall": 1018,
+            "evaporation": 1150
+        },
+        {
+            "location": "Warnambool",
+            "rainfall": 741,
+            "evaporation": 1250
+        }
+    ]
+}
