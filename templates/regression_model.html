@@ -1,0 +1,176 @@
+{% extends "_template.html" %}
+{% block regressionactive1 %}class="active"{% endblock %}
+{% block regressionactive2 %}class="active"{% endblock %}
+{% block styles %}
+<style>
+    table td+td {
+        border-left: 1px solid slategray;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h3>Water Usage Predictions</h3>
+    <p class='flow-text'>No system in place to measure your water usage? Make use of our water usage estimation model by
+        entering some details of your farm and receive an estimate of your water use.</p>
+    <p class='flow-text'>If you do know your farm's water usage, you can use this tool to see whether your farm is
+        performing better or worse than expected.</p>
+    <form action="{{ url_for('irrigation_proto') }}" method="post">
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <select name="capital_cost">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="4">Very High</option>
+                    <option value="3">High</option>
+                    <option value="2">Modest</option>
+                    <option value="1">Low</option>
+                </select>
+                <label>How much capital cost are you willing to incur?</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <select name="pumping_cost">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="4">High</option>
+                    <option value="3">Moderate</option>
+                    <option value="2">Modest</option>
+                    <option value="1">Low</option>
+                </select>
+                <label>How much pumping cost are you willing to incur?</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <select name="labour_requirements">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="4">High</option>
+                    <option value="3">Moderate</option>
+                    <option value="2">Modest</option>
+                    <option value="1">Low</option>
+                </select>
+                <label>What level of labour requirements do you want the system to require?</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <select name="efficiency">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="4">Very High</option>
+                    <option value="3">High</option>
+                    <option value="2">Moderate</option>
+                    <option value="1">Low</option>
+                </select>
+                <label>What level of efficiency do you want from the system?</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <select name="uniformity">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="4">Very High</option>
+                    <option value="3">High</option>
+                    <option value="2">Low</option>
+                    <option value="1">Very Low</option>
+                </select>
+                <label>How uniform do you want the irrigation to be?</label>
+            </div>
+            <p class="range-field col s12 m6">
+                How many recommendations do you want?
+                <input type="range" name="num_recs" min="1" max="10" value="3">
+            </p>
+        </div>
+        <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+    <br><br>
+
+    <!-- Model error warning -->
+    <p class="red-text">{{ error }}</p>
+
+    <!-- Model output area - popup -->
+    {% if irri_response is defined %}
+    <p class="center-align">
+        <a class="waves-effect waves-light btn modal-trigger blue" href="#irrigation_modal">View Results!</a>
+    </p>
+    <div id="irrigation_modal" class="modal">
+        <div class="modal-content">
+            <h4>Irrigation System Recommendations</h4>
+            <p>Based on your inputs, here are the recommendations for your farm. These are sorted with the most suitable
+                system first.</p>
+            {% for system in irri_response %}
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">{{ system.data.nice_name }}</span>
+                    <p>{{ system.data.description|safe }}</p>
+                    <p><a href="{{ system.description_src }}">(source)</a></p>
+                </div>
+                <div class="card-tabs">
+                    <ul class="tabs tabs-fixed-width">
+                        <li class="tab"><a class="active" href="#fields{{ loop.index }}">Suitability</a></li>
+                        <li class="tab"><a href="#comments{{ loop.index }}">Considerations</a></li>
+                        <li class="tab"><a href="#reading{{ loop.index }}">Further Reading</a></li>
+                    </ul>
+                </div>
+                <div class="card-content grey lighten-4">
+                    <div id="fields{{ loop.index }}">
+                        <ul class="browser-default">
+                            <table class="centered">
+                                <thead>
+                                    <tr>
+                                        <th>Capital Cost</th>
+                                        <th>Pumping Cost</th>
+                                        <th>Labour Requirements</th>
+                                        <th>Efficiency</th>
+                                        <th>Uniformity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="{{ system.matches[0] }} lighten-2">{{ system.fields[0] }}</td>
+                                        <td class="{{ system.matches[1] }} lighten-2">{{ system.fields[1] }}</td>
+                                        <td class="{{ system.matches[2] }} lighten-2">{{ system.fields[2] }}</td>
+                                        <td class="{{ system.matches[3] }} lighten-2">{{ system.fields[3] }}</td>
+                                        <td class="{{ system.matches[4] }} lighten-2">{{ system.fields[4] }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </ul>
+                    </div>
+                    <div id="comments{{ loop.index }}">
+                        <ul class="browser-default">
+                            {% for comment in system.data.comments %}
+                            <li>{{ comment }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div id="reading{{ loop.index }}">
+                        <ul class="browser-default">
+                            {% for pair in system.data.links %}
+                            <li><a href="{{ pair[1] }}">{{ pair[0] }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('#irrigation_modal').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            onOpenEnd: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                $(document).ready(function () {
+                    $('ul.tabs').tabs();
+                });
+            }
+        });
+        $('#irrigation_modal').modal('open');
+    });
+</script>
+{% endblock %}
