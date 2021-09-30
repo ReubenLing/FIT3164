@@ -8,6 +8,11 @@ with open('output.csv', 'r') as f:
     data = list(data)
     data = data[1:]
 
+print(f"MAX LACTATING: {max([int(x[3]) for x in data])}")
+print(f"MAX NONLACTATING: {max([int(x[4]) for x in data])}")
+print(f"MAX FARMSIZE: {max([int(x[5]) for x in data])}")
+print(f"MAX WATER USAGE: {max([float(x[10]) for x in data])}")
+
 while True:
 
     # Irrigation filter
