@@ -1,0 +1,202 @@
+{% extends "_template.html" %}
+{% block regressionactive1 %}class="active"{% endblock %}
+{% block regressionactive2 %}class="active"{% endblock %}
+{% block styles %}
+<style>
+    table td+td {
+        border-left: 1px solid slategray;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h3>Water Usage Predictions</h3>
+    <p class='flow-text'>No system in place to measure your water usage? Make use of our water usage estimation model by
+        entering some details of your farm and receive an estimate of your water use.</p>
+    <p class='flow-text'>If you do know your farm's water usage, you can use this tool to see whether your farm is
+        performing better or worse than expected.</p>
+    <form action="{{ url_for('regression_model') }}" method="post">
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <input placeholder="Enter a number from 0-1400" name="lactating_cows" id="lactating_cows" type="text" class="validate">
+                <label for="lactating_cows">How many lactating cows are on your farm?</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input placeholder="Enter a number from 0-1000" name="nonlactating_cows" id="nonlactating_cows" type="text" class="validate">
+                <label for="nonlactating_cows">How many non-lactating cows are on your farm?</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <input placeholder="Enter a number from 0-10000" name="farm_size" id="farm_size" type="text" class="validate">
+                <label for="farm_size">How large is your farm? (ha)</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input placeholder="Enter a number from 0-100, 1 decimal point allowed" name="irrigation_percentage" id="irrigation_percentage" type="text" class="validate">
+                <label for="irrigation_percentage">What percentage of your farm land is irrigated? (0 if no irrigation)</label>
+            </div>
+        </div>
+        <div class="row">
+			<div class="input-field col s12 m6">
+				<select name="location">
+					<option value="" disabled selected>Choose your option</option>
+					<option value="alexandra">Alexandra</option>
+					<option value="bairnsdale">Bairnsdale</option>
+					<option value="ballarat">Ballarat</option>
+					<option value="benalla">Benalla</option>
+					<option value="bendigo">Bendigo</option>
+					<option value="charlton">Charlton</option>
+					<option value="colac">Colac</option>
+					<option value="hamilton">Hamilton</option>
+					<option value="horsham">Horsham</option>
+					<option value="kerang">Kerang</option>
+					<option value="leongatha">Leongatha</option>
+					<option value="mildura">Mildura</option>
+					<option value="orbost">Orbost</option>
+					<option value="portland">Portland</option>
+					<option value="sale">Sale</option>
+					<option value="swan_hill">Swan Hill</option>
+					<option value="wangaratta">Wangaratta</option>
+					<option value="warragul">Warragul</option>
+					<option value="warnambool">Warnambool</option>
+				</select>
+				<label>Where is your farm located?</label>
+			</div>
+            <div class="input-field col s12 m6">
+                <input placeholder="Enter a number from 0-100, 4 decimal points allowed" name="water_usage" id="water_usage" type="text" class="validate">
+                <label for="water_usage">If it is known, what is your farm's water usage? (ML / day)</label>
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+    <br><br>
+    
+
+    <!-- Model error warning -->
+    <p class="red-text">{{ error }}</p>
+
+    <!-- Model output area - popup -->
+    {% if irri_response is defined %}
+    <p class="center-align">
+        <a class="waves-effect waves-light btn modal-trigger blue" href="#irrigation_modal">View Results!</a>
+    </p>
+    <div id="irrigation_modal" class="modal">
+        <div class="modal-content">
+            <h4>Irrigation System Recommendations</h4>
+            <p>Based on your inputs, here are the recommendations for your farm. These are sorted with the most suitable
+                system first.</p>
+            {% for system in irri_response %}
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">{{ system.data.nice_name }}</span>
+                    <p>{{ system.data.description|safe }}</p>
+                    <p><a href="{{ system.description_src }}">(source)</a></p>
+                </div>
+                <div class="card-tabs">
+                    <ul class="tabs tabs-fixed-width">
+                        <li class="tab"><a class="active" href="#fields{{ loop.index }}">Suitability</a></li>
+                        <li class="tab"><a href="#comments{{ loop.index }}">Considerations</a></li>
+                        <li class="tab"><a href="#reading{{ loop.index }}">Further Reading</a></li>
+                    </ul>
+                </div>
+                <div class="card-content grey lighten-4">
+                    <div id="fields{{ loop.index }}">
+                        <ul class="browser-default">
+                            <table class="centered">
+                                <thead>
+                                    <tr>
+                                        <th>Capital Cost</th>
+                                        <th>Pumping Cost</th>
+                                        <th>Labour Requirements</th>
+                                        <th>Efficiency</th>
+                                        <th>Uniformity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="{{ system.matches[0] }} lighten-2">{{ system.fields[0] }}</td>
+                                        <td class="{{ system.matches[1] }} lighten-2">{{ system.fields[1] }}</td>
+                                        <td class="{{ system.matches[2] }} lighten-2">{{ system.fields[2] }}</td>
+                                        <td class="{{ system.matches[3] }} lighten-2">{{ system.fields[3] }}</td>
+                                        <td class="{{ system.matches[4] }} lighten-2">{{ system.fields[4] }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </ul>
+                    </div>
+                    <div id="comments{{ loop.index }}">
+                        <ul class="browser-default">
+                            {% for comment in system.data.comments %}
+                            <li>{{ comment }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div id="reading{{ loop.index }}">
+                        <ul class="browser-default">
+                            {% for pair in system.data.links %}
+                            <li><a href="{{ pair[1] }}">{{ pair[0] }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('#irrigation_modal').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            onOpenEnd: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                $(document).ready(function () {
+                    $('ul.tabs').tabs();
+                });
+            }
+        });
+        $('#irrigation_modal').modal('open');
+    });
+
+    // Restricts input for the given textbox to the given inputFilter.
+    function setInputFilter(textbox, inputFilter) {
+        ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+            textbox.addEventListener(event, function () {
+                if (inputFilter(this.value)) {
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                    this.value = "";
+                }
+            });
+        });
+    }
+
+    setInputFilter(document.getElementById("lactating_cows"), function (value) {
+        return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1500);
+    });
+    setInputFilter(document.getElementById("nonlactating_cows"), function (value) {
+        return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1000);
+    });
+    setInputFilter(document.getElementById("farm_size"), function (value) {
+        return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 10000);
+    });
+    setInputFilter(document.getElementById("water_usage"), function (value) {
+        return /^-?\d*[.,]?\d{0,4}$/.test(value) && (value === "" || parseInt(value) <= 100);
+    });
+    setInputFilter(document.getElementById("irrigation_percentage"), function (value) {
+        return /^-?\d*[.,]?\d{0,1}$/.test(value) && (value === "" || parseInt(value) <= 100);
+    });
+</script>
+{% endblock %}
