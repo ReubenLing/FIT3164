@@ -16,6 +16,8 @@ with open(os.path.join(dirname, 'data/Irrigation_table.csv'), 'r', encoding='utf
     irrigation_table_raw = list(csv.reader(f))
 
 # FUNCTIONS GO HERE
+
+
 def water_model(cows):
     """Predict water usage."""
 
@@ -77,6 +79,8 @@ def irrigation_recommendation(input_dict):
     return recommendations
 
 # ROUTES GO HERE
+
+
 @app.route('/')
 def homepage():
     return render_template('index.html')
@@ -86,9 +90,11 @@ def homepage():
 def irrigation():
     return render_template('irrigation_model.html')
 
+
 @app.route('/water_prediction')
 def water_use():
     return render_template('regression_model.html')
+
 
 @app.route('/methodology')
 def methodology():
@@ -119,6 +125,82 @@ def methodology():
 #     return render_template('models.html', response=response)
 
 
+@app.route('/regression_model', methods=['POST'])
+def regression_model():
+
+    # EXAMPLE REQUEST DATA
+    # {'action': '',
+    #  'farm_size': '123',
+    #  'irrigation_percentage': '34',
+    #  'lactating_cows': '324',
+    #  'location': 'leongatha',
+    #  'nonlactating_cows': '23',
+    #  'water_usage': '32'}
+
+    # Uncomment to see request data format
+    pprint(request.form)
+
+    # Coefficient dict
+    if request.form['irrigation_percentage'] == 0:
+        coefficients = {
+            "farm_size": 0,
+            "irrigation_percentage": 0,
+            "lactating_cows": 0,
+            "nonlactating_cows": 0,
+        }
+    else:
+        coefficients = {
+            "farm_size": 0,
+            "irrigation_percentage": 0,
+            "lactating_cows": 0,
+            "nonlactating_cows": 0,
+        }
+
+    result = sum([float(request.form[x]) * coefficients[x]
+                  for x in coefficients.keys()])
+
+    # Figure out water usage differential
+    if request.form['water_usage'] != '':
+        usage_diff = result - float(request.form['water_usage'])
+        usage = request.form['water_usage']
+    else:
+        usage = result
+
+    # Grade water consumption TODO 
+    #   load csv
+    #   sort by water usage
+    #   use this shit
+
+            #     import pandas as pd
+            # import numpy as np
+            # from scipy.interpolate import interp1d
+
+            # # set up a sample dataframe
+            # df = pd.DataFrame(np.random.uniform(0,1,(11)), columns=['a'])
+            # # sort it by the desired series and caculate the percentile
+            # sdf = df.sort('a').reset_index()
+            # sdf['b'] = sdf.index / float(len(sdf) - 1)
+            # # setup the interpolator using the value as the index
+            # interp = interp1d(sdf['a'], sdf['b'])
+
+            # # a is the value, b is the percentile
+            # >>> sdf
+            #     index         a    b
+            # 0      10  0.030469  0.0
+            # 1       3  0.144445  0.1
+            # 2       4  0.304763  0.2
+            # 3       1  0.359589  0.3
+            # 4       7  0.385524  0.4
+            # 5       5  0.538959  0.5
+            # 6       8  0.642845  0.6
+            # 7       6  0.667710  0.7
+            # 8       9  0.733504  0.8
+            # 9       2  0.905646  0.9
+            # 10      0  0.961936  1.0
+
+    return str(result)
+
+
 @app.route('/irrigation_proto', methods=['POST'])
 def irrigation_proto():
     """Prototype irrigation model handler
@@ -139,7 +221,8 @@ def irrigation_proto():
     """
 
     # Catch empty fields
-    keys = ["capital_cost", "pumping_cost", "labour_requirements", "efficiency", "uniformity"]
+    keys = ["capital_cost", "pumping_cost",
+            "labour_requirements", "efficiency", "uniformity"]
     for key in keys:
         if key not in request.form.keys():
             return render_template('models.html', error="All form fields must have a value selected.")

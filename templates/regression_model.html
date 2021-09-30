@@ -15,72 +15,64 @@
         entering some details of your farm and receive an estimate of your water use.</p>
     <p class='flow-text'>If you do know your farm's water usage, you can use this tool to see whether your farm is
         performing better or worse than expected.</p>
-    <form action="{{ url_for('irrigation_proto') }}" method="post">
+    <form action="{{ url_for('regression_model') }}" method="post">
         <div class="row">
             <div class="input-field col s12 m6">
-                <select name="capital_cost">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="4">Very High</option>
-                    <option value="3">High</option>
-                    <option value="2">Modest</option>
-                    <option value="1">Low</option>
-                </select>
-                <label>How much capital cost are you willing to incur?</label>
+                <input placeholder="Enter a number from 0-1400" name="lactating_cows" id="lactating_cows" type="text" class="validate">
+                <label for="lactating_cows">How many lactating cows are on your farm?</label>
             </div>
             <div class="input-field col s12 m6">
-                <select name="pumping_cost">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="4">High</option>
-                    <option value="3">Moderate</option>
-                    <option value="2">Modest</option>
-                    <option value="1">Low</option>
-                </select>
-                <label>How much pumping cost are you willing to incur?</label>
+                <input placeholder="Enter a number from 0-1000" name="nonlactating_cows" id="nonlactating_cows" type="text" class="validate">
+                <label for="nonlactating_cows">How many non-lactating cows are on your farm?</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12 m6">
-                <select name="labour_requirements">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="4">High</option>
-                    <option value="3">Moderate</option>
-                    <option value="2">Modest</option>
-                    <option value="1">Low</option>
-                </select>
-                <label>What level of labour requirements do you want the system to require?</label>
+                <input placeholder="Enter a number from 0-10000" name="farm_size" id="farm_size" type="text" class="validate">
+                <label for="farm_size">How large is your farm? (ha)</label>
             </div>
             <div class="input-field col s12 m6">
-                <select name="efficiency">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="4">Very High</option>
-                    <option value="3">High</option>
-                    <option value="2">Moderate</option>
-                    <option value="1">Low</option>
-                </select>
-                <label>What level of efficiency do you want from the system?</label>
+                <input placeholder="Enter a number from 0-100, 1 decimal point allowed" name="irrigation_percentage" id="irrigation_percentage" type="text" class="validate">
+                <label for="irrigation_percentage">What percentage of your farm land is irrigated? (0 if no irrigation)</label>
             </div>
         </div>
         <div class="row">
+			<div class="input-field col s12 m6">
+				<select name="location">
+					<option value="" disabled selected>Choose your option</option>
+					<option value="alexandra">Alexandra</option>
+					<option value="bairnsdale">Bairnsdale</option>
+					<option value="ballarat">Ballarat</option>
+					<option value="benalla">Benalla</option>
+					<option value="bendigo">Bendigo</option>
+					<option value="charlton">Charlton</option>
+					<option value="colac">Colac</option>
+					<option value="hamilton">Hamilton</option>
+					<option value="horsham">Horsham</option>
+					<option value="kerang">Kerang</option>
+					<option value="leongatha">Leongatha</option>
+					<option value="mildura">Mildura</option>
+					<option value="orbost">Orbost</option>
+					<option value="portland">Portland</option>
+					<option value="sale">Sale</option>
+					<option value="swan_hill">Swan Hill</option>
+					<option value="wangaratta">Wangaratta</option>
+					<option value="warragul">Warragul</option>
+					<option value="warnambool">Warnambool</option>
+				</select>
+				<label>Where is your farm located?</label>
+			</div>
             <div class="input-field col s12 m6">
-                <select name="uniformity">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="4">Very High</option>
-                    <option value="3">High</option>
-                    <option value="2">Low</option>
-                    <option value="1">Very Low</option>
-                </select>
-                <label>How uniform do you want the irrigation to be?</label>
+                <input placeholder="Enter a number from 0-100, 4 decimal points allowed" name="water_usage" id="water_usage" type="text" class="validate">
+                <label for="water_usage">If it is known, what is your farm's water usage? (ML / day)</label>
             </div>
-            <p class="range-field col s12 m6">
-                How many recommendations do you want?
-                <input type="range" name="num_recs" min="1" max="10" value="3">
-            </p>
         </div>
         <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
             <i class="material-icons right">send</i>
         </button>
     </form>
     <br><br>
+    
 
     <!-- Model error warning -->
     <p class="red-text">{{ error }}</p>
@@ -171,6 +163,40 @@
             }
         });
         $('#irrigation_modal').modal('open');
+    });
+
+    // Restricts input for the given textbox to the given inputFilter.
+    function setInputFilter(textbox, inputFilter) {
+        ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+            textbox.addEventListener(event, function () {
+                if (inputFilter(this.value)) {
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                    this.value = "";
+                }
+            });
+        });
+    }
+
+    setInputFilter(document.getElementById("lactating_cows"), function (value) {
+        return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1500);
+    });
+    setInputFilter(document.getElementById("nonlactating_cows"), function (value) {
+        return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1000);
+    });
+    setInputFilter(document.getElementById("farm_size"), function (value) {
+        return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 10000);
+    });
+    setInputFilter(document.getElementById("water_usage"), function (value) {
+        return /^-?\d*[.,]?\d{0,4}$/.test(value) && (value === "" || parseInt(value) <= 100);
+    });
+    setInputFilter(document.getElementById("irrigation_percentage"), function (value) {
+        return /^-?\d*[.,]?\d{0,1}$/.test(value) && (value === "" || parseInt(value) <= 100);
     });
 </script>
 {% endblock %}
