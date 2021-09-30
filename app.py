@@ -95,28 +95,28 @@ def methodology():
     return render_template('methodology.html')
 
 
-@app.route('/test_output', methods=['POST'])
-def test_output():
-    """Handles test form submissions from "models" page."""
+# @app.route('/test_output', methods=['POST'])
+# def test_output():
+#     """Handles test form submissions from "models" page."""
 
-    # Get data from form
-    num_cows_text = request.form['test_input']
-    num_cows_range = request.form['test_range']
+#     # Get data from form
+#     num_cows_text = request.form['test_input']
+#     num_cows_range = request.form['test_range']
 
-    # A simple model
-    water_consumption_text = water_model(num_cows_text)
-    water_consumption_range = water_model(num_cows_range)
+#     # A simple model
+#     water_consumption_text = water_model(num_cows_text)
+#     water_consumption_range = water_model(num_cows_range)
 
-    # Build response dictionary
-    response = {
-        "num_cows_text": num_cows_text,
-        "num_cows_range": num_cows_range,
-        "water_consumption_text": water_consumption_text,
-        "water_consumption_range": water_consumption_range,
-    }
+#     # Build response dictionary
+#     response = {
+#         "num_cows_text": num_cows_text,
+#         "num_cows_range": num_cows_range,
+#         "water_consumption_text": water_consumption_text,
+#         "water_consumption_range": water_consumption_range,
+#     }
 
-    # Serve modelled value to html template
-    return render_template('models.html', response=response)
+#     # Serve modelled value to html template
+#     return render_template('models.html', response=response)
 
 
 @app.route('/irrigation_proto', methods=['POST'])
@@ -163,4 +163,4 @@ def irrigation_proto():
     # pprint(recs[0])
 
     # Render template
-    return render_template('models.html', irri_response=recs)
+    return render_template('irrigation_model.html', irri_response=recs)
