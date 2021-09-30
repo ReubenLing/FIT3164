@@ -82,10 +82,13 @@ def homepage():
     return render_template('index.html')
 
 
-@app.route('/models')
-def models():
-    return render_template('models.html')
+@app.route('/irrigation')
+def irrigation():
+    return render_template('irrigation_model.html')
 
+@app.route('/water_prediction')
+def water_use():
+    return render_template('regression_model.html')
 
 @app.route('/methodology')
 def methodology():
