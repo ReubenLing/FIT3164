@@ -28,7 +28,8 @@ Kg.feed.Cow.per.year               -1.542e+03  1.045e+03  -1.477  0.16194
 # Edit values
 variables = {
     # Basic parameters
-    "farms": 3462,  # https://www.dairyaustralia.com.au/industry-statistics/cow-and-farms-data
+    # "farms": 3462,  # https://www.dairyaustralia.com.au/industry-statistics/cow-and-farms-data
+    "farms": 1000,  # https://www.dairyaustralia.com.au/industry-statistics/cow-and-farms-data
     "cows_per_farm": 895,
     "farm_size_avg": 4331,  # hectares
 
@@ -61,9 +62,7 @@ attributes = [
     # 'tank_volume',
     'avg_daily_water_usage',
 ]
-# manager = mp.Manager()
-# dataset = manager.list()
-# dataset.append(attributes)
+
 dataset = [attributes]
 
 # Load location data
@@ -126,7 +125,7 @@ def generate_row(i):
     usage = usage * (np.random.choice(range(10, variables['variation_max_mult'])) / 10)
     usage += variables['water_per_irrigated_hectare'] * (farm_size * irrigated_percentage / 100)
 
-    # usage += offset(usage)
+    usage += offset(usage)
 
     # Add
     farm_data = [
@@ -142,45 +141,16 @@ def generate_row(i):
         evaporation,
         usage,
     ]
-    # dataset.append(farm_data)
+    print(farm_data)
     return farm_data
 
 if __name__ == "__main__":
-    # p = mp.Pool()
-    # p.map(generate_row, range(variables['farms']))
-
-    for i in range(variables['farms']):
-        dataset.append(generate_row(i))
-
-    print(dataset)
-
+    p = mp.Pool()
+    results = p.map(generate_row, range(variables['farms']))
+    dataset += results
     with open('output.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerows(dataset)
 
-    print("Dataset written")
-    print(dataset)
-
     print('ROW HEADERS')
     pprint([f"{y} {x}" for y, x in enumerate(['index', 'farm location', 'number of cows', 'number of lactating cows', 'number of non-lactating cows', 'farm size', 'irrigating?', 'percentage of land irrigated', 'rainfall', 'evaporation', 'daily water usage'], 0)])
-
-# /////////////
-# Plot function
-# /////////////
-
-
-# with open('output.csv', 'r') as f:
-#     data = csv.reader(f)
-#     data = list(data)
-#     data = data[1:]
-
-# for row in data:
-#     assert int(row[3]) + int(row[4]) == int(row[2])
-
-# plt.scatter(
-#     [float(x[5]) for x in data],
-#     [float(x[10]) for x in data],
-#     alpha=0.5)
-# plt.xlabel('Farm Size')
-# plt.ylabel('Consumption')
-# plt.show()
