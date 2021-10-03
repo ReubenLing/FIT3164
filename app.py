@@ -19,7 +19,7 @@ with open(os.path.join(dirname, 'data/Irrigation_table - clean numeric ranges_fi
     irrigation_table = list(csv.reader(f))
 with open(os.path.join(dirname, 'data/Irrigation_table.csv'), 'r', encoding='utf-8-sig') as f:
     irrigation_table_raw = list(csv.reader(f))
-with open('data/simulation/output.csv', 'r') as f:
+with open(os.path.join(dirname, 'data/simulation/output.csv'), 'r') as f:
     regression_data = list(csv.reader(f))
 
 # FUNCTIONS GO HERE
