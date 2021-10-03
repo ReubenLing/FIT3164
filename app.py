@@ -3,6 +3,11 @@ import json
 import os
 import csv
 from pprint import pprint
+from numpy.core.fromnumeric import sort
+
+import pandas as pd
+import numpy as np
+from scipy.interpolate import interp1d
 
 app = Flask(__name__)
 
@@ -14,6 +19,8 @@ with open(os.path.join(dirname, 'data/Irrigation_table - clean numeric ranges_fi
     irrigation_table = list(csv.reader(f))
 with open(os.path.join(dirname, 'data/Irrigation_table.csv'), 'r', encoding='utf-8-sig') as f:
     irrigation_table_raw = list(csv.reader(f))
+with open('data/simulation/output.csv', 'r') as f:
+    regression_data = list(csv.reader(f))
 
 # FUNCTIONS GO HERE
 
@@ -138,67 +145,92 @@ def regression_model():
     #  'water_usage': '32'}
 
     # Uncomment to see request data format
-    pprint(request.form)
+    # pprint(request.form)
 
-    # Coefficient dict
-    if request.form['irrigation_percentage'] == 0:
-        coefficients = {
-            "farm_size": 0,
-            "irrigation_percentage": 0,
-            "lactating_cows": 0,
-            "nonlactating_cows": 0,
-        }
-    else:
-        coefficients = {
-            "farm_size": 0,
-            "irrigation_percentage": 0,
-            "lactating_cows": 0,
-            "nonlactating_cows": 0,
-        }
+    # Results dict
+    results = {}
 
-    result = sum([float(request.form[x]) * coefficients[x]
+    # Convert immutable dict to mutable
+    form_data = dict(request.form)
+
+    # Take column headers before filtering data
+    column_headers = regression_data[0]
+
+    # Coefficient dict and filter rows
+    if str(form_data['irrigation_percentage']) in ['', '0']: # no irrigation
+        intercept = -1.096 * 10**4
+        coefficients = {
+            "farm_size": (4.595, -2),
+            "irrigation_percentage": (0, 0),
+            "lactating_cows": (1.157, 2),
+            "nonlactating_cows": (7.094, 1),
+        }
+        filtered_data = [x for x in regression_data if x[6] == 'no']
+        print('data filtered by no-irrigation')
+    else: # irrigation
+        form_data["num_cows"] = int(form_data['lactating_cows']) + int(form_data['nonlactating_cows'])
+        intercept = -2.308 * 10**7
+        coefficients = {
+            "farm_size": (5.343, 3),
+            "irrigation_percentage": (3.775, 5),
+            "lactating_cows": (-3.370, 2),
+            "num_cows": (2.063, 2),
+        }
+        filtered_data = [x for x in regression_data if x[6] == 'yes']
+        print('data filtered by irrigation')
+
+    # Convert blank strings to 0
+    for key in form_data.keys():
+        if form_data[key] == '':
+            form_data[key] = 0
+
+    # Calculate regression model result
+    result = intercept + sum([float(form_data[x]) * (coefficients[x][0] * 10**coefficients[x][1])
                   for x in coefficients.keys()])
 
     # Figure out water usage differential
-    if request.form['water_usage'] != '':
-        usage_diff = result - float(request.form['water_usage'])
-        usage = request.form['water_usage']
+    if form_data['water_usage'] != 0:
+        actual = float(form_data['water_usage']) * 1000000 # megalitre
+        diff = result - actual
+        error = abs(((actual - result) / actual) * 100)
+        usage = actual
+
+        results['difference'] = diff
+        results['error'] = error
+        results['actual'] = actual
     else:
         usage = result
 
-    # Grade water consumption TODO 
-    #   load csv
-    #   sort by water usage
-    #   use this shit
+    # Create dataframe
+    df = pd.DataFrame(filtered_data, columns=column_headers)
+    df['avg_daily_water_usage'] = pd.to_numeric(df['avg_daily_water_usage'])
+    
+    # Sort by water consumption
+    sorted_df = df.sort_values('avg_daily_water_usage').reset_index()
+    sorted_df['rank'] = sorted_df.index / float(len(sorted_df) - 1)
+    print(sorted_df)
 
-            #     import pandas as pd
-            # import numpy as np
-            # from scipy.interpolate import interp1d
+    # Setup the interpolator using the value as the index
+    interp = interp1d(sorted_df['avg_daily_water_usage'], sorted_df['rank'], fill_value="extrapolate")
 
-            # # set up a sample dataframe
-            # df = pd.DataFrame(np.random.uniform(0,1,(11)), columns=['a'])
-            # # sort it by the desired series and caculate the percentile
-            # sdf = df.sort('a').reset_index()
-            # sdf['b'] = sdf.index / float(len(sdf) - 1)
-            # # setup the interpolator using the value as the index
-            # interp = interp1d(sdf['a'], sdf['b'])
+    # Get quantile for measurement
+    quantile = interp(usage)
 
-            # # a is the value, b is the percentile
-            # >>> sdf
-            #     index         a    b
-            # 0      10  0.030469  0.0
-            # 1       3  0.144445  0.1
-            # 2       4  0.304763  0.2
-            # 3       1  0.359589  0.3
-            # 4       7  0.385524  0.4
-            # 5       5  0.538959  0.5
-            # 6       8  0.642845  0.6
-            # 7       6  0.667710  0.7
-            # 8       9  0.733504  0.8
-            # 9       2  0.905646  0.9
-            # 10      0  0.961936  1.0
+    results['quantile'] = quantile
+    results['output'] = result
 
-    return str(result)
+    # Tidy up the results
+    results['output'] = int(str(results['output']).split('.')[0]) # no decimal litres
+    results['output'] = f"{results['output']:,}" # comma separators
+    results['quantile'] = str(round(float(results['quantile']), 2)) # 2 d.p.
+    if 'actual' in results.keys():
+        results['actual'] = int(str(results['actual']).split('.')[0]) # no decimal litres
+        results['actual'] = f"{results['actual']:,}" # comma separators
+        results['difference'] = int(str(results['difference']).split('.')[0]) # no decimal litres
+        results['difference'] = f"{results['difference']:,}" # comma separators
+        results['error'] = str(round(float(results['error']), 2)) # 2 d.p.
+
+    return render_template('regression_model.html', response=results)
 
 
 @app.route('/irrigation_proto', methods=['POST'])
