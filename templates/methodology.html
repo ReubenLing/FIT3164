@@ -2,15 +2,236 @@
 {% block methodologyactive1 %}class="active"{% endblock %}
 {% block methodologyactive2 %}class="active"{% endblock %}
 {% block content %}
+<style>
+    pre {
+        color: rgb(221, 221, 221);
+        background-color: #2b2b2b;
+        padding-left: 3vw;
+        padding-right: 3vw;
+        padding-top: 2vw; 
+        padding-bottom: 2vw;
+        display: block;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2vw;
+        margin-bottom: 2vw;
+        line-height: 1.5;
+        white-space: pre-wrap;
+    }
+
+    .references p {
+        margin-left: 1.5em;
+        text-indent:-1.5em;
+        word-wrap: break-word;
+    }
+    </style>
 <div class="container">
-    <p>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of
-        text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A
-        bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of
-        text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A
-        bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of
-        text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A
-        bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of
-        text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A bunch of text<br>A
-        bunch of text<br>A bunch of text<br>A bunch of text<br></p>
+    <h3 class=>Research Methodology</h3>
+    <h4>Water Usage Prediction Model</h4>
+    <h5>Approach</h5>
+    <p>
+        To compare the water usage of dairy farms in Victoria, we built a regression model that predicts the water usage of a farm given a set of attributes. To create this model, we required a dataset that contains all of these potential attributes and has a large sample size.<br>
+        We could not find any complete datasets like this, so we instead collected data from many sources and used this to simulate our dataset.
+    </p>
+    <h5>Data Collection</h5>
+    <p>
+        The data pertaining to the dataset itself pertains to:
+        <ul>
+            <li>The number of dairy farms in Victoria (<a href="https://www.dairyaustralia.com.au/industry-statistics/cow-and-farms-data">Khan et al., 2010</a>)</li>
+        </ul>
+        The attributes in relation to water usage and the primary datasets used to inform them include:
+        <ul>
+            <li>The location of the farm and its corresponding rainfall and evaporation (<a href="https://agriculture.vic.gov.au/support-and-resources/tools-and-calculators/farm-water-calculator?fbclid=IwAR3bONG-O6k1r-48i4oBbnGcsJKv8xFMVJ027gxBetOWxM6rwgvDYCvIZ0g">Agriculture Victoria, n.a.</a>)</li>
+
+            <li>The total number of cows on the farm (<a href="https://www.dairyaustralia.com.au/industry-statistics/cow-and-farms-data">Dairy Australia, 2020</a>)</li>
+
+            <li>The proportion of lactating cows on the farm (<a href="https://www.researchgate.net/publication/242468376_Conference_on_Biophysical_and_Socioeconomic_Frame_Conditions_for_the_Sustainable_Management_of_Natural_Resources">Anteneh et al., 2009</a>)</li>
+
+            <li>The average amount of water each type of cow consumes (<a href="https://agriculture.vic.gov.au/__data/assets/pdf_file/0010/595396/Dairy-Shed-Water-Use-in-Victoria-2009-Analysis.pdf">Agriculture Victoria, 2009</a>)</li>
+
+            <li>The land area of the farm (<a href="https://agriculture.vic.gov.au/__data/assets/pdf_file/0020/806141/2020-21-Dairy-Farm-Monitor-Annual-Report.pdf">Agriculture Victoria, 2021</a>)</li>
+
+            <li>The percentage of land being irrigated (<a href="https://agriculture.vic.gov.au/__data/assets/pdf_file/0020/806141/2020-21-Dairy-Farm-Monitor-Annual-Report.pdf">Agriculture Victoria, 2021</a>)</li>
+        </ul>
+        These are the direct sources for our numbers, but many other sources were used to verify the validity of the above data.
+    </p>
+    <h5>Data Simulation</h5>
+    <p>
+        Using the above datasets, we wrote our data simulation in Python. The code is as follows.
+        <br><br>
+        Imports:
+        <pre>
+import numpy as np
+import json
+import csv
+import matplotlib.pyplot as plt
+from pprint import pprint
+import multiprocessing as mp
+        </pre>
+        Define the static parameters used in the simulation:
+            <pre>
+variables = {
+# Basic parameters
+"farms": 3462,
+"cows_per_farm": 895,
+"farm_size_avg": 4331,  # hectares
+
+# Farm usage parameters
+"lactating_proportion": 66.8, # percent
+"lactating_demand": 80,
+"nonlactating_demand": 50,
+"variation_max_mult": 19, # 19 = 1.8
+
+# Irrigation parameters
+"farms_irrigation_proportion": 55, # percent
+"irrigated_land_proportion": 64, # percent
+"water_per_irrigated_hectare": 8487, # litres per day
+
+# Yard cleaning
+"cleaning": 28 # litres per cow
+}
+        </pre>
+
+        Initialise the dataset with the attributes:
+        <pre>
+# Start building table of data
+attributes = [
+    'farm_name',
+    'location',
+    'num_cows',
+    'num_cows_lactating',
+    'num_cows_other',
+    'farm_size',
+    'irrigating?',
+    'irrigation_percentage',
+    'rainfall',
+    'evaporation',
+    'avg_daily_water_usage',
+]
+dataset = [attributes]
+        </pre>
+        
+        Load in the rainfall and evaporation data for each location:
+        <pre>
+# Load location data
+with open('attrs.json', 'r') as f:
+    loc_data = json.load(f)
+loc_data = loc_data['locations']
+</pre>
+
+A function to add a random offset to the final water usage of a farm, to account for unseen variables:
+<pre>
+# Offset function
+def offset(usage):
+    max_offset = int(0.3 * usage) + 10000
+    if np.random.randint(10) > 7:
+        max_offset += int(np.random.normal(8000, 2000))
+    offset = np.random.choice(range(-max_offset, max_offset))
+    if usage + offset &#60 0:
+        return abs(offset) 
+    return offset
+</pre>
+
+Generate a row/record for each farm:
+<pre>
+def generate_row(i):
+    # Farm location - pick a random location, equal distribution
+    farm_location = np.random.choice([x['location'] for x in loc_data])
+
+    # Number of cows - normally distributed from average
+    farm_cows = abs(int(np.random.normal(variables['cows_per_farm'], 300)))
+
+    # Number of lactating cows -
+    lactating_proportion = np.random.normal(variables['lactating_proportion'], 5)
+    lactating_cows = int(farm_cows * (lactating_proportion / 100))
+
+    # Number of non-lactating cows - simply the remaining
+    non_lactating_cows = farm_cows - lactating_cows
+
+    # Size of farm - normal distribute
+    farm_size = abs(int(np.random.normal(variables['farm_size_avg'], 2000)))
+    if farm_size &#60 1000:
+        farm_size += 1000
+
+    # Is the farm irrigating - take binary
+    irrigating_proportion = variables['farms_irrigation_proportion'] / 100
+    is_irrigating = np.random.choice(['yes', 'no'], p=[irrigating_proportion, 1-irrigating_proportion])
+
+    # What percentage of farmland is being irrigated?
+    if is_irrigating == 'yes':
+        irrigated_percentage = np.random.normal(variables['irrigated_land_proportion'], 20)
+        if irrigated_percentage > 90:
+            irrigated_percentage -= 10
+    else:
+        irrigated_percentage = 0
+
+    # Get location and evap data from location data
+    rainfall = [x for x in loc_data if x['location']
+                == farm_location][0]['rainfall']
+    evaporation = [x for x in loc_data if x['location']
+                == farm_location][0]['evaporation']
+
+    # Rainwater tank size - correlates to size of farm
+    # farm_range = farm_size_max
+    </pre>
+
+    Calculate a water usage for each farm according to the generated attributes:
+    <pre>
+    # Calculate usage
+    usage = lactating_cows * variables['lactating_demand'] + non_lactating_cows * variables['nonlactating_demand']
+    usage = usage * (np.random.choice(range(10, variables['variation_max_mult'])) / 10)
+    usage += variables['water_per_irrigated_hectare'] * (farm_size * irrigated_percentage / 100)
+
+    usage += offset(usage)
+    </pre>
+
+    Return the farm row:
+    <pre>
+    # Add
+    farm_data = [
+        i,
+        farm_location,
+        farm_cows,
+        lactating_cows,
+        non_lactating_cows,
+        farm_size,
+        is_irrigating,
+        irrigated_percentage,
+        rainfall,
+        evaporation,
+        usage,
+    ]
+    print(farm_data)
+    return farm_data
+</pre>
+End row generation.
+<br><br> 
+Generate all of the rows and write them into a csv file:
+<pre>
+if __name__ == "__main__":
+    p = mp.Pool()
+    results = p.map(generate_row, range(variables['farms']))
+    dataset += results
+    with open('output.csv', 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(dataset)
+
+        </pre>
+    </p>
+
+    <h4>References</h4>
+    <div class="references">
+    <p>Agriculture Australia. (2021).Farm water calculator. Retrieved from https://agriculture.vic.gov.au/support-and-resources/tools-and-calculators/farm-water-calculator?fbclid=IwAR3bONG-O6k1r-48i4oBbnGcsJKv8xFMVJ027gxBetOWxM6rwgvDYCvIZ0g
+    </p>
+    <p>Agriculture Victoria, Dairy Australia (2020). Dairy Farm Monitor Project. Victoria | Annual Report. 2020-21. Retrieved from https://agriculture.vic.gov.au/__data/assets/pdf_file/0020/806141/2020-21-Dairy-Farm-Monitor-Annual-Report.pdf
+    </p>
+    <p>Agriculture Victoria. (2009). Dairy Shed Water Use in Victoria. Retrieved from https://agriculture.vic.gov.au/__data/assets/pdf_file/0010/595396/Dairy-Shed-Water-Use-in-Victoria-2009-Analysis.pdf
+    </p>
+    <p>Anteneh, B., Tegegne, A., Beyene, F., & Gebremedhin, B.. (2009). Fluid milk and butter production and marketing systems in Fogera District, Amhara Region, Ethiopia. Conference on Biophysical and Socio-economic Frame Conditions for the Sustainable Management of Natural Resources.
+    </p>
+    <p>Dairy Australia. (2020). Cow & Farms Data. Retrieved from https://www.dairyaustralia.com.au/industry-statistics/cow-and-farms-data
+    </p>
+    </div>
 </div>
 {% endblock %}
