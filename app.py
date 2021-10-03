@@ -257,7 +257,7 @@ def irrigation_proto():
             "labour_requirements", "efficiency", "uniformity"]
     for key in keys:
         if key not in request.form.keys():
-            return render_template('models.html', error="All form fields must have a value selected.")
+            return render_template('irrigation_model.html', error="All form fields must have a value selected.")
 
     # Uncomment to see request data format
     # pprint(request.form)
