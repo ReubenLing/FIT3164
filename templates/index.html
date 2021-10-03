@@ -4,7 +4,6 @@
 {% block navclass %}{% endblock %}
 {% block styles %}
 <style>
-
 	/* Basic page setup */
 	html {
 		scroll-behavior: smooth;
@@ -28,7 +27,8 @@
 
 	nav ul a,
 	nav .brand-logo {
-		color:  rgba(128, 128, 128, 0.7);}
+		color: rgba(128, 128, 128, 0.7);
+	}
 
 	/* Header image */
 	body {
@@ -78,14 +78,16 @@
 	}
 
 	/* Header colours */
-	h1{
+	h1 {
 		color: #FCFCFC;
 		margin: 0
 	}
-	h3{
+
+	h3 {
 		color: #229BD3
 	}
-	h4{
+
+	h4 {
 		color: #4CBAE6
 	}
 
@@ -93,13 +95,14 @@
 	.table-of-contents a.active {
 		border-left: 2px solid #1E6091;
 	}
+
 	.table-of-contents a:hover {
 		border-left: 1px solid #2CA5DD;
 	}
+
 	blockquote {
 		border-left: 5px solid #229BD3
 	}
-
 </style>
 {% endblock %}
 {% block content %}
@@ -149,9 +152,22 @@
 				-- Mention Victoria as having the most dairy farms in the country
 			-->
 			<div id="australia" class="section scrollspy">
-	
+
 				<h3 class=>Australian Dairy Farms</h3>
-				<p>Placeholder text</p>
+				<p>Before we get into water savings, it is important to recognise the importance of dairy farming in
+					Victoria specifically. The below map highlights data for Australian states in 2019.</p>
+				<p><i>Note: States can be hovered over to reveal numbers.</i></p>
+
+				<div class="video-container">
+					<iframe class="responsive-img" frameborder="0" scrolling="no"
+						src="https://public.tableau.com/views/CowsperState/Dashboard4?:language=en-GB&publish=yes&:display_count=n&:origin=viz_share_link&:showVizHome=no">
+					</iframe>
+				</div>
+
+				<p>This is not a recent phenomenon: looking back over the past several years, we can see that Victoria
+					consistently has the largest number of dairy farms in the country.</p>
+				<p><i>Note: Regions in the area chart can be clicked to highlight the respective columns and vice versa.
+						Both visualisations can be filtered by the year selector in the top right.</i></p>
 
 				<!-- Area + choropleth visualisation -->
 				<div class="video-container">
@@ -160,17 +176,11 @@
 					</iframe>
 				</div>
 
-				<div class="video-container">
-					<iframe class="responsive-img" frameborder="0" scrolling="no"
-						src="https://public.tableau.com/views/CowsperState/Dashboard4?:language=en-GB&publish=yes&:display_count=n&:origin=viz_share_link&:showVizHome=no">
-					</iframe>
-				</div>
-
-				<p>As illustrated in the visualisation above, Victorian farms have by far the most cows in the country.
+				<p>
 					If all
 					Victorian farms were to implement efficient water management strategies, there would be a
 					significant impact on water consumption in Australia as a whole.</p>
-					
+
 			</div>
 
 			<!-- 
@@ -231,7 +241,10 @@
 			</div>
 
 			<div id="irrigation" class="section scrollspy">
-				<blockquote></block><h4 class=>Irrigation</h4></blockquote>
+				<blockquote>
+					</block>
+					<h4 class=>Irrigation</h4>
+				</blockquote>
 				<p>The majority of dairy farms employ irrigation on their fields, ensuring the plants grow healthily to
 					feed the grazing cows.</p>
 				<p>The type and implementation of these irrigation systems have an impact on dairy farming, so it is
@@ -251,7 +264,9 @@
 			</div>
 
 			<div id="consumption" class="section scrollspy">
-				<blockquote><h4 class=>Cow Consumption</h4></blockquote>
+				<blockquote>
+					<h4 class=>Cow Consumption</h4>
+				</blockquote>
 				<p>A major component of dairy farm water usage goes directly to the cows in the form of drinking water.
 				</p>
 				<p>The amount of water needed by cows varies based on the season and temperature. The below spiral chart
@@ -266,7 +281,9 @@
 			</div>
 
 			<div id="washing" class="section scrollspy">
-				<blockquote><h4 class=>Washing and Cleaning</h4></blockquote>
+				<blockquote>
+					<h4 class=>Washing and Cleaning</h4>
+				</blockquote>
 				<p>Water must be allocated to washing and cleaning sheds. This obviously depends on the surface area of
 					the shed, as well as the method of cleaning employed.</p>
 				<p>[NEED TO CLARIFY WHAT TO WRITE / VISUALISE HERE]</p>
@@ -280,7 +297,9 @@
 			</div>
 
 			<div id="runoffs" class="section scrollspy">
-			<blockquote><h4 class=>Runoffs</h4></blockquote>
+				<blockquote>
+					<h4 class=>Runoffs</h4>
+				</blockquote>
 				<p>[NEED TO CLARIFY WHAT TO WRITE / VISUALISE HERE]</p>
 
 				<!-- ???  visualisation -->
