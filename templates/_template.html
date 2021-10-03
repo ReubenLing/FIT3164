@@ -18,14 +18,14 @@
             z-index: 999;
         }
         /*Navigation */
-            
+        
         nav {
             background-color: rgba(255,255,255,0.7);
             backdrop-filter: blur(6px);
         }
         nav ul a,
 	    nav .brand-logo {
-		color:  rgba(128, 128, 128, 0.7);}
+		color:  rgba(39, 39, 39, 0.7);}
         
         /* Progress bar */
 	.progress-container {
@@ -66,8 +66,13 @@
             flex: 1 0 auto;
         }
     footer{
-        background-color:#9CA0A0
+        background-color:rgba(214, 214, 214, 0.7); 
     }
+    .material-icons{
+        color: black;
+
+    }
+
     </style>
     {% block styles %}
     {% endblock %}
@@ -76,7 +81,7 @@
 <body>
     <header>
         <div class="navbar-fixed">
-            <nav {% block navclass %}class= "nav" {% endblock %} role="navigation">
+            <nav  {% block navclass %} class= "nav" {% endblock %} role="navigation">
                 <div class="nav-wrapper container"><a id="logo-container"
                         onclick='window.scrollTo({top: 0, behavior: "smooth"});'
                         class="brand-logo hide-on-med-and-down">Water
@@ -95,7 +100,7 @@
                         <li {% block regressionactive2 %}{% endblock %}><a href="/water_prediction">Water Use Prediction</a></li>
                         <li {% block methodologyactive2 %}{% endblock %}><a href="/methodology">Methodology</a></li>
                     </ul>
-                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons" color= "black">menu</i></a>
                 </div>
             </nav>
         </div>
@@ -128,7 +133,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Made using <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                Made using <a class="blue-text text-lighten-3" href="http://materializecss.com">Materialize</a>
             </div>
         </div>
     </footer>
