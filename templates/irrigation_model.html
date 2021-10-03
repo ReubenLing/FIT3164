@@ -95,8 +95,11 @@
 				system first.</p>
 			{% for system in irri_response %}
 			<div class="card">
-				<div class="card-content">
+				<div class="card-image">
+					<img src="static/images/irrigation/{{ system.data.img }}">
 					<span class="card-title">{{ system.data.nice_name }}</span>
+				  </div>
+				<div class="card-content">
 					<p>{{ system.data.description|safe }}</p>
 					<p><a href="{{ system.description_src }}">(source)</a></p>
 				</div>

@@ -1,6 +1,7 @@
 {
     "Surface irrigation- furrow": {
         "nice_name": "Surface Furrow Irrigation",
+        "img": "surface-furrow.jfif",
         "description": "Furrow irrigation is conducted by creating small parallel channels along the field length in the direction of predominant slope. Water is applied to the top end of each furrow and flows down the field under the influence of gravity. Water may be supplied using gated pipe, siphon and head ditch, or bankless systems. The speed of water movement is determined by many factors such as slope, surface roughness and furrow shape but most importantly by the inflow rate and soil infiltration rate.",
         "description_src": "https://en.wikipedia.org/wiki/Surface_irrigation#Furrow_irrigation",
         "comments": [
@@ -23,6 +24,7 @@
     },
     "Surface irrigation- border-check": {
         "nice_name": "Border-Check Irrigation",
+        "img": "border-check.jfif",
         "description": "Border Check or ‘flood’ irrigation is the most common irrigation system in northern Victoria. This type of irrigation distributes water via open irrigation channels to irrigation ‘bays’ which are defined by small earthen ‘check banks’. Border check irrigation can be efficient on suitable soils, with appropriate layout and good management. Efficient irrigation is applying the water required by the pasture/crop for optimal growth with a minimum of water lost through deep drainage beyond the roots or excess surface runoff.",
         "description_src": "https://extensionaus.com.au/irrigatingag/docs/irrigation-in-northern-victoria/broadacre-irrigation-systems-in-northern-victoria/border-check-flood-irrigation-system/",
         "comments": [
@@ -51,6 +53,7 @@
     },
     "Fixed or portable solid set sprinklers": {
         "nice_name": "Solid Set Sprinkler Irrigation",
+        "img": "solid-set.jpg",
         "description": "Solid set sprinkler irrigation systems are those in which sprinklers, with their assorted riser, lateral, and manifold pipes, are placed in a regular pattern over the entire irrigated area.",
         "description_src": "http://ufdcimages.uflib.ufl.edu/IR/00/00/15/43/00001/AE38400.pdf",
         "comments": [
@@ -70,6 +73,7 @@
     },
     "Travelling gun or boom irrigators, with soft or hard hose.": {
         "nice_name": "Travelling Gun or Boom Irrigators",
+        "img": "travelling.jpg",
         "description": "These irrigators come in two forms: with a soft hose/cable drum machine, or with a hard hose drum. Both incorporate a 'big gun' sprinkler. They are commonly used to irrigate pastures and lucerne, but machines with elevated wheels can be used on taller crops.<br><br>Rotary boom irrigators are similar in concept to the soft hose travelling irrigator except that the big gun sprinkler is replaced by a galvanised boom fitted with medium to low pressure sprinklers.",
         "description_src": "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0009/176643/irrigation-evaluation-1.pdf",
         "comments": [
@@ -90,6 +94,7 @@
     },
     "Long lateral sprinklers\n(eg Van den Bosch, K-line)": {
         "nice_name": "Long Lateral Sprinklers",
+        "img": "long-lateral.jpg",
         "description": "Pressure compensated sprinklers result in good uniformity, even with hills or longer lateral lines. K-Line irrigation is designed to fit the field (not the field altered to fit the irrigation system) K-Line can be designed around obstructions - resulting in large initial cost savings.",
         "description_src": "https://www.k-linena.com/",
         "comments": [
@@ -110,6 +115,7 @@
     },
     "Centre Pivot": {
         "nice_name": "Centre Pivot Irrigation",
+        "img": "centre-pivot.jpg",
         "description": "As the name suggests, centre pivots irrigate in a circular pattern around a central pivot point. Pivots are capable of applying water only or fertiliser, chemicals, and herbicides mixed with the water. This versatility can improve the efficiency of irrigation practices by using a single piece of machinery to perform several functions.",
         "description_src": "https://www.irrigationaustralia.com.au/about-us/types-of-irrigation/centre-pivot-lateral-move-systems",
         "comments": [
@@ -138,6 +144,7 @@
     },
     "Linear or lateral move": {
         "nice_name": "Linear/Lateral Move Irrigation",
+        "img": "lateral-move.jpg",
         "description": "Lateral moves are similar to centre pivots except they are not fixed at any point and move up and down rectangular fields. They are controlled by a guidance system and the LRDUs at either end of the machine. Lateral moves can be controlled by electricity generated or hydraulic oil pressure.",
         "description_src": "https://www.irrigationaustralia.com.au/about-us/types-of-irrigation/centre-pivot-lateral-move-systems",
         "comments": [
@@ -158,6 +165,7 @@
     },
     "Micro irrigation – microsprays or minisprinklers": {
         "nice_name": "Microspray/Minisprinkler Micro Irrigation",
+        "img": "micro-mini.jpg",
         "description": "Micro-sprinkler systems are similar to drip irrigation systems except—rather than discharging water at discreet points—the water is sprayed out through a small sprinkler device at much lower rates than conventional sprinkler heads.",
         "description_src": "https://waterwelljournal.com/irrigation-fundamentals-10/",
         "comments": [
@@ -172,6 +180,7 @@
     },
     "Micro irrigation - drip": {
         "nice_name": "Drip Micro-Irrigation",
+        "img": "drip.jpg",
         "description": "In drip irrigation, water is run through pipes (with holes in them) lying slightly above the ground next to the crops. Water slowly drips onto the crop roots and stems. Unlike spray irrigation, very little is lost to evaporation and the water can be directed only to the plants that need it, cutting back on water waste.",
         "description_src": "https://www.usgs.gov/special-topic/water-science-school/science/irrigation-drip-or-microirrigation?qt-science_center_objects=0#qt-science_center_objects",
         "comments": [
@@ -193,6 +202,7 @@
     },
     "Micro irrigation – subsurface drip": {
         "nice_name": "Subsurface Drip Micro-Irrigation",
+        "img": "sub-drip.jpg",
         "description": "Subsurface irrigation uses a network of polyethylene pipes located just under the ground's surface to apply disinfected effluent in the root zone of plants, preventing airborne drift and minimising runoff.",
         "description_src": "https://www.waternsw.com.au/water-quality/catchment/living/wastewater/systems/subsurface-irrigation",
         "comments": [
