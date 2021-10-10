@@ -17,27 +17,27 @@
         performing better or worse than expected.</p>
     <form action="{{ url_for('regression_model') }}" method="post">
         <div class="row">
-            <div class="input-field col s12 m6">
+            <div class="input-field col m12 l6">
                 <input placeholder="Enter a number from 0-1400" name="lactating_cows" id="lactating_cows" type="text" class="validate">
                 <label for="lactating_cows">How many lactating cows are on your farm?</label>
             </div>
-            <div class="input-field col s12 m6">
+            <div class="input-field col m12 l6">
                 <input placeholder="Enter a number from 0-1000" name="nonlactating_cows" id="nonlactating_cows" type="text" class="validate">
                 <label for="nonlactating_cows">How many non-lactating cows are on your farm?</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s12 m6">
+            <div class="input-field col m12 l6">
                 <input placeholder="Enter a number from 0-10000" name="farm_size" id="farm_size" type="text" class="validate">
                 <label for="farm_size">How large is your farm? (ha)</label>
             </div>
-            <div class="input-field col s12 m6">
+            <div class="input-field col m12 l6">
                 <input placeholder="Enter a number from 0-100, 1 decimal point allowed" name="irrigation_percentage" id="irrigation_percentage" type="text" class="validate">
                 <label for="irrigation_percentage">What percentage of your farm land is irrigated? (0 if no irrigation)</label>
             </div>
         </div>
         <div class="row">
-			<div class="input-field col s12 m6">
+			<div class="input-field col m12 l6">
 				<select name="location">
 					<option value="" disabled selected>Choose your option</option>
 					<option value="alexandra">Alexandra</option>
@@ -62,7 +62,7 @@
 				</select>
 				<label>Where is your farm located?</label>
 			</div>
-            <div class="input-field col s12 m6">
+            <div class="input-field col m12 l6">
                 <input placeholder="Enter a number from 0-100, 4 decimal points allowed" name="water_usage" id="water_usage" type="text" class="validate">
                 <label for="water_usage">If it is known, what is your farm's water usage? (ML / day)</label>
             </div>
