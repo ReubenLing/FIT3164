@@ -13,12 +13,10 @@
     <link href="{{url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet"
         media="screen,projection" />
     <style>
-        /*Navigation */
+        /* Navigation */
         .navbar-fixed {
             z-index: 999;
         }
-
-        /*Navigation */
 
         nav {
             background-color: rgba(255, 255, 255, 0.7);
@@ -30,24 +28,17 @@
             color: rgba(39, 39, 39, 0.7);
         }
 
-        /* Progress bar */
-        .progress-container {
-            background-color: rgba(150, 150, 150, 0.6);
-            height: 0px;
-            width: 100%;
-        }
-
-        .progress-bar {
-            background-color: #4AC3ED;
-            height: 10px;
-            width: 0%;
-        }
-
+        /* Sticky elements */
         div.sticky {
             position: -webkit-sticky;
             /* Safari */
             position: sticky;
             top: 64px;
+        }
+
+        /* For sticky footer */
+        main {
+            flex: 1 0 auto;
         }
 
         body {
@@ -56,6 +47,7 @@
             flex-direction: column;
         }
 
+        /* Header colours */
         h1 {
             color: #FCFCFC
         }
@@ -64,23 +56,36 @@
             color: #229BD3
         }
 
+        h4 {
+            color: #4CBAE6
+        }
+
         h5 {
             color: #4CBAE6
         }
 
-        main {
-            flex: 1 0 auto;
-        }
-
+        /* Footer colour */
         footer {
             background-color: rgba(214, 214, 214, 0.7);
         }
 
-        a.sidenav-trigger > .material-icons {
+        /* Navbar hamburger for mobile */
+        a.sidenav-trigger>.material-icons {
             color: black;
-
         }
 
+        /* Accent block colours */
+        .table-of-contents a.active {
+            border-left: 2px solid #1E6091;
+        }
+
+        .table-of-contents a:hover {
+            border-left: 1px solid #2CA5DD;
+        }
+
+        blockquote {
+            border-left: 5px solid #229BD3
+        }
 
         /* Hide navbar title when overlap */
         @media screen and (max-width: 1300px) {
@@ -110,7 +115,7 @@
                         <li {% block methodologyactive1 %}{% endblock %}><a href="/methodology">Methodology</a></li>
                     </ul>
                     <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons"
-                        color="black">menu</i></a>
+                            color="black">menu</i></a>
                 </div>
             </nav>
             <ul id="nav-mobile" class="sidenav">
