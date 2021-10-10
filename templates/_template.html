@@ -141,15 +141,15 @@
                         project at
                         Monash University.<br><br>Group 21 Members: Reuben Ling, Benita Sien, Shyam Srinivas
                 </div>
-                <!-- <div class="col l3 s12">
-                    <h5 class="white-text">Links</h5>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Libraries Used</h5>
                     <ul>
-                        <li><a class="white-text" href="#!">Link 1</a></li>
-                        <li><a class="white-text" href="#!">Link 2</a></li>
-                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="https://materializecss.com/">MaterializeCSS</a></li>
+                        <li><a class="white-text" href="https://highlightjs.org/">highlight.js</a></li>
+                        <li><a class="white-text" href="https://github.com/aFarkas/lazysizes">lazysizes</a></li>
                         <li><a class="white-text" href="#!">Link 4</a></li>
                     </ul>
-                </div> -->
+                </div>
             </div>
         </div>
         <div class="footer-copyright">
@@ -159,11 +159,11 @@
         </div>
     </footer>
 
-
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{url_for('static', filename='js/materialize.js') }}"></script>
     <script src="{{url_for('static', filename='js/init.js') }}"></script>
+    <script src="{{url_for('static', filename='js/lazysizes.min.js') }}" async=""></script>
     <script>M.AutoInit();</script>
     {% block scripts %}
     {% endblock %}
