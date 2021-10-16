@@ -3,7 +3,6 @@ import json
 import os
 import csv
 from pprint import pprint
-from numpy.core.fromnumeric import sort
 
 import pandas as pd
 import numpy as np
@@ -230,7 +229,7 @@ def regression_model():
         results['difference'] = f"{results['difference']:,}" # comma separators
         results['error'] = str(round(float(results['error']), 2)) # 2 d.p.
 
-    return render_template('regression_model.html', response=results)
+    return render_template('regression_model.html', response=results, form_data=form_data)
 
 
 @app.route('/irrigation_proto', methods=['POST'])
