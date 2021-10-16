@@ -132,7 +132,7 @@ def methodology():
 
 
 @app.route('/regression_model', methods=['POST'])
-def regression_model():
+def regression_model(test_data=None):
 
     # EXAMPLE REQUEST DATA
     # {'action': '',
@@ -149,8 +149,11 @@ def regression_model():
     # Results dict
     results = {}
 
-    # Convert immutable dict to mutable
-    form_data = dict(request.form)
+    # Convert immutable dict to mutable or handle test data
+    if test_data:
+        form_data = test_data
+    else:
+        form_data = dict(request.form)
 
     # Take column headers before filtering data
     column_headers = regression_data[0]
@@ -165,7 +168,6 @@ def regression_model():
             "nonlactating_cows": (7.094, 1),
         }
         filtered_data = [x for x in regression_data if x[6] == 'no']
-        print('data filtered by no-irrigation')
     else: # irrigation
         form_data["num_cows"] = int(form_data['lactating_cows']) + int(form_data['nonlactating_cows'])
         intercept = -2.308 * 10**7
@@ -176,7 +178,6 @@ def regression_model():
             "num_cows": (2.063, 2),
         }
         filtered_data = [x for x in regression_data if x[6] == 'yes']
-        print('data filtered by irrigation')
 
     # Convert blank strings to 0
     for key in form_data.keys():
@@ -207,7 +208,6 @@ def regression_model():
     # Sort by water consumption
     sorted_df = df.sort_values('avg_daily_water_usage').reset_index()
     sorted_df['rank'] = sorted_df.index / float(len(sorted_df) - 1)
-    print(sorted_df)
 
     # Setup the interpolator using the value as the index
     interp = interp1d(sorted_df['avg_daily_water_usage'], sorted_df['rank'], fill_value="extrapolate")
@@ -229,4 +229,7 @@ def regression_model():
         results['difference'] = f"{results['difference']:,}" # comma separators
         results['error'] = str(round(float(results['error']), 2)) # 2 d.p.
 
-    return render_template('regression_model.html', response=results, form_data=form_data)
+    if test_data:
+        return results
+    else:
+        return render_template('regression_model.html', response=results, form_data=form_data)
