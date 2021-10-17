@@ -73,7 +73,7 @@ def build_histogram(irrigating, actual_usage, prediction):
         plt.text(actual_usage * 1.1, max_ylim * 0.9, f'Usage: {round(actual_usage, 4)}')
     else:
         plt.axvline(actual_usage, color='#006400', linewidth=1)
-        plt.text(actual_usage * 1.1, max_ylim * 0.9, f'Actual Usage: {actual_usage}', color='#dc143c')
+        plt.text(actual_usage * 1.1, max_ylim * 0.9, f'Actual Usage: {actual_usage}', color='#006400')
         plt.axvline(prediction, color='#dc143c', linewidth=1, linestyle='dashed')
         plt.text(prediction * 1.1, max_ylim * 0.8, f'Prediction: {round(prediction, 4)}', color='#dc143c')
 
