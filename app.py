@@ -70,12 +70,12 @@ def build_histogram(irrigating, actual_usage, prediction):
     if actual_usage == prediction: # no usage given
         print('hi')
         plt.axvline(actual_usage, color='k', linestyle='dashed', linewidth=1)
-        plt.text(actual_usage * 1.1, max_ylim * 0.9, f'Usage: {actual_usage}')
+        plt.text(actual_usage * 1.1, max_ylim * 0.9, f'Usage: {round(actual_usage, 4)}')
     else:
         plt.axvline(actual_usage, color='#006400', linewidth=1)
-        plt.text(actual_usage * 1.1, max_ylim * 0.9, f'Actual Usage: {actual_usage}')
+        plt.text(actual_usage * 1.1, max_ylim * 0.9, f'Actual Usage: {actual_usage}', color='#dc143c')
         plt.axvline(prediction, color='#dc143c', linewidth=1, linestyle='dashed')
-        plt.text(prediction * 1.1, max_ylim * 0.8, f'Prediction: {round(prediction, 4)}')
+        plt.text(prediction * 1.1, max_ylim * 0.8, f'Prediction: {round(prediction, 4)}', color='#dc143c')
 
     # Save the plot
     filename = str(time.time()).replace('.', '')
