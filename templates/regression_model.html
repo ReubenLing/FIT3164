@@ -6,6 +6,41 @@
     table td+td {
         border-left: 1px solid slategray;
     }
+
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flex-container>div {
+        flex: 1;
+    }
+
+    .materialboxed {
+        object-fit: scale-down;
+        max-width: 100%;
+    }
+
+    .materialboxed {
+        display: inline-block;
+    }
+
+    .center .materialboxed,
+    .center-align .materialboxed {
+        margin: 0 auto;
+        position: relative !important;
+    }
+
+    .flow-text > span {
+        color: #4CBAE6
+    }
+
+    .modal-content {
+        background-color: #fff;
+    }
 </style>
 {% endblock %}
 {% block content %}
@@ -125,32 +160,32 @@
                     </div>
                 </li>
             </ul>
-            <table>
-                <tbody>
-                    <tr>
-                        <td><b>Water Usage Prediction</b></td>
-                        <td>{{ response.output }} litres per day</td>
-                    </tr>
-                    <tr>
-                        <td><b>Quantile</b></td>
-                        <td>{{ response.quantile }}</td>
-                    </tr>
-                    {% if response.error is defined %}
-                    <tr>
-                        <td><b>Actual Water Usage</b></td>
-                        <td>{{ response.actual }} litres per day</td>
-                    </tr>
-                    <tr>
-                        <td><b>Difference</b></td>
-                        <td>{{ response.difference }} litres per day</td>
-                    </tr>
-                    <tr>
-                        <td><b>Error in Prediction</b></td>
-                        <td>{{ response.error }}%</td>
-                    </tr>
-                    {% endif %}
-                </tbody>
-            </table>
+            <div class="flex-container">
+                <div class="center-align">
+                    <p><b>Predicted Water Usage</b></p>
+                    <h4>{{ (response.output | replace(",", "") | int / 1000000) | round(4) }} ML/day</h4>
+                </div>
+                {% if response.error is defined %}
+                <div class="center-align">
+                    <p><b>Actual Water Usage</b></p>
+                    <h4>{{ response.actual | replace(",", "") | int / 1000000 }} ML/day</h4>
+                </div>
+                {% endif %}
+            </div>
+            <p class="flow-text center-align">Your farm's water usage falls in the <span><b>{{
+                        response.quantile
+                        }}</b></span> quantile of farms in Victoria.</p>
+            {% if response.error is defined %}
+            <p class="flow-text center-align">Your farm uses <span>
+                    <b>
+                        {{ response.error }}% {% if response.actual > response.output %}less{% else
+                        %}more{% endif %} water
+                    </b>
+                </span> than our model prediction.</p>
+            {% endif %}
+            <p class="center-align">
+                <img src="static/histograms/{{ graph }}.png" class="materialboxed" style="width: 70%; height: auto">
+            </p>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>

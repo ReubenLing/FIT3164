@@ -2,11 +2,17 @@ from flask import Flask, render_template, request
 import json
 import os
 import csv
+import time
 from pprint import pprint
 
 import pandas as pd
 import numpy as np
 from scipy.interpolate import interp1d
+
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as font_manager
 
 app = Flask(__name__)
 
@@ -23,6 +29,63 @@ with open(os.path.join(dirname, 'data/simulation/output.csv'), 'r') as f:
 
 # FUNCTIONS GO HERE
 
+def build_histogram(irrigating, actual_usage, prediction):
+    """Build a histogram to serve to the user."""
+
+    # Convert to ML
+    actual_usage /= 1000000
+    prediction /=  1000000
+
+    # Filter dataset by irrigation type
+    if irrigating:
+        filtered_data = [x for x in regression_data if x[6] == 'yes']
+    else:
+        filtered_data = [x for x in regression_data if x[6] == 'no']
+
+    # Get just water usage in ML
+    usages = [float(x[10])/1000000 for x in filtered_data]
+
+    # Find number of bins by Freedman-Diaconis
+    # q25, q75 = np.percentile(usages, [0.25, 0.75])
+    # bin_width = 2 * (q75 - q25) * len(usages) ** (-1/3)
+    # bins = round((sorted(usages)[-1] - sorted(usages)[0]) / bin_width)
+    # print("Freedman–Diaconis number of bins:", bins)
+    bins = 30
+
+    # Configure Roboto font
+    fe = font_manager.FontEntry(
+        fname=os.path.join(dirname, 'font/Roboto-Thin.ttf'),
+        name='Roboto')
+    font_manager.fontManager.ttflist.insert(0, fe) 
+    matplotlib.rcParams['font.family'] = fe.name 
+
+    # Plot histogram
+    plt.hist(usages, density=True, bins=bins, color='#4CBAE6', edgecolor='#229BD3')
+    plt.title(label="Water Usage Comparison (VIC)")
+    plt.xlabel("Daily Water Usage (ML)")
+    plt.ylabel("Frequency")
+
+    # Plot lines
+    _, max_ylim = plt.ylim()
+    if actual_usage == prediction: # no usage given
+        print('hi')
+        plt.axvline(actual_usage, color='k', linestyle='dashed', linewidth=1)
+        plt.text(actual_usage * 1.1, max_ylim * 0.9, f'Usage: {actual_usage}')
+    else:
+        plt.axvline(actual_usage, color='#006400', linewidth=1)
+        plt.text(actual_usage * 1.1, max_ylim * 0.9, f'Actual Usage: {actual_usage}')
+        plt.axvline(prediction, color='#dc143c', linewidth=1, linestyle='dashed')
+        plt.text(prediction * 1.1, max_ylim * 0.8, f'Prediction: {round(prediction, 4)}')
+
+    # Save the plot
+    filename = str(time.time()).replace('.', '')
+    plt.savefig(os.path.join(dirname, f'static/histograms/{filename}.png'), bbox_inches='tight', dpi=300)
+    
+    # Clear plot
+    plt.cla()
+    plt.clf()
+
+    return filename
 
 def water_model(cows):
     """Predict water usage."""
@@ -218,6 +281,12 @@ def regression_model(test_data=None):
     results['quantile'] = quantile
     results['output'] = result
 
+    # Build histogram
+    if str(form_data['irrigation_percentage']) in ['', '0']: # no irrigation
+        graph = build_histogram(False, usage, result)
+    else: # irrigation
+        graph = build_histogram(True, usage, result)
+
     # Tidy up the results
     results['output'] = int(str(results['output']).split('.')[0]) # no decimal litres
     results['output'] = f"{results['output']:,}" # comma separators
@@ -232,7 +301,7 @@ def regression_model(test_data=None):
     if test_data:
         return results
     else:
-        return render_template('regression_model.html', response=results, form_data=form_data)
+        return render_template('regression_model.html', response=results, form_data=form_data, graph=graph)
 
 
 
