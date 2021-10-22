@@ -256,6 +256,37 @@
 </code>
 
         </pre>
+The resulting data was then read into R:
+<pre>
+<code>
+data= read.csv("sample_output.csv")
+</code>
+</pre>
+The data was split into irrigating and non-irrigating farms as they have vastly different water requirements which cannot be captured in a linear model:
+<pre>
+<code>
+data_non_irrigating=data.frame(data[data["irrigating."]=="no",])
+data_irrigating=data.frame(data[data["irrigating."]=="yes",])
+</code>
+</pre>
+The irrelevant columns were removed:
+<pre>
+<code>
+df=subset(data_irrigating, select = -c(location,farm_name,irrigating.) )
+df_1=subset(data_non_irrigating, select = -c(location,farm_name,irrigating.) )
+</code>
+</pre>
+Two regression models were trained on the irrigating and non-irrigating datasets:
+<pre>
+<code>
+fit_irr=lm(avg_daily_water_usage~.-num_cows,data=df_1)
+summary(fit_irr)
+
+fit_irr=lm(avg_daily_water_usage~ .,data=df)
+summary(fit_irr)
+
+</code>
+</pre>
     </p>
 
     <h4>References</h4>
